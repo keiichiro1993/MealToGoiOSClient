@@ -8,7 +8,9 @@
 
 import Foundation
 
-class RestaurantDetail {
+class RestaurantDetail: Identifiable {
+    var id: UUID
+    
     var Name: String
     var Dishes: [Dish]
     var Description: String
@@ -17,14 +19,15 @@ class RestaurantDetail {
     var CloseTime: Date
     var Images: [ImageWithData]
     
-    init(name: String, description: String) {
+    init(name: String, description: String, dishes: [Dish], messages: [Message], open: Date, close: Date, images: [ImageWithData]) {
         self.Description = description
         self.Name = name
+        self.Dishes = dishes
+        self.Messages = messages
+        self.OpenTime = open
+        self.CloseTime = close
+        self.Images = images
         
-        Dishes = []
-        Messages = []
-        OpenTime = Date()
-        CloseTime = Date()
-        Images = []
+        id = UUID()
     }
 }
