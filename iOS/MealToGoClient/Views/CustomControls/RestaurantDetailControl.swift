@@ -9,8 +9,44 @@
 import SwiftUI
 
 struct RestaurantDetailControl: View {
+    var restaurant = demoRestaurants[0]
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack(alignment: .top, spacing: 5) {
+            Image(restaurant.Images.first!.URL)
+                .resizable()
+                .frame(width: 80, height: 80)
+                .cornerRadius(12)
+                .border(Color.white, width: 3)
+                .cornerRadius(5)
+                .offset(y: -20)
+            
+            VStack(alignment: .leading) {
+                Text(restaurant.Name)
+                    .font(.headline)
+                HStack(spacing: 0) {
+                    Text("営業時間: ")
+                    Text(DateStringConverter.ToString(date: restaurant.OpenTime, format: "HH:mm"))
+                    Text("~")
+                    Text(DateStringConverter.ToString(date: restaurant.CloseTime, format: "HH:mm"))
+                }
+                HStack(spacing: 0) {
+                    Text("受付時間: ")
+                    ScrollView(.horizontal, content: {
+                        HStack(spacing: 5) {
+                            ForEach(restaurant.AvailableTimes) { time in
+                                HStack(spacing: 0) {
+                                    Text(DateStringConverter.ToString(date: time.Begin, format: "HH:mm"))
+                                    Text("~")
+                                    Text(DateStringConverter.ToString(date: time.End, format: "HH:mm"))
+                                }
+                            }
+                        }
+                    })
+                }
+            }
+            .font(.footnote)
+            Spacer()
+        }
     }
 }
 

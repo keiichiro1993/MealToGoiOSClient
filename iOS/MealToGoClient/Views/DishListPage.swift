@@ -10,9 +10,23 @@ import SwiftUI
 
 struct DishListPage: View {
     var body: some View {
-        List {
-            RestaurantDetailControl()
-            
+        ScrollView {
+            VStack {
+                VStack(spacing: 0) {
+                    Image(demoRestaurants[0].Images[1].URL)
+                        .resizable()
+                        .frame(height: 250)
+                    RestaurantDetailControl()
+                        .padding(.leading, 5.0)
+                }
+                .padding(0)
+                
+                //ScrollViewで囲ったからListじゃなくてもいいのかも
+                List {
+                    
+                    Text("test")
+                }
+            }.navigationBarTitle(demoRestaurants[0].Name)
         }
     }
 }

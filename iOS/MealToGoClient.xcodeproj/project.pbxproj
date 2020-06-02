@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		601E3A0D24869C96001DCAD2 /* DateStringConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E3A0C24869C96001DCAD2 /* DateStringConverter.swift */; };
 		6050E82E2483DF8400AA4EF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6050E82D2483DF8400AA4EF7 /* AppDelegate.swift */; };
 		6050E8302483DF8400AA4EF7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6050E82F2483DF8400AA4EF7 /* SceneDelegate.swift */; };
 		6050E8322483DF8400AA4EF7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6050E8312483DF8400AA4EF7 /* ContentView.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		601E3A0C24869C96001DCAD2 /* DateStringConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateStringConverter.swift; sourceTree = "<group>"; };
 		6050E82A2483DF8400AA4EF7 /* MealToGoClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealToGoClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6050E82D2483DF8400AA4EF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6050E82F2483DF8400AA4EF7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		601E3A0B24869C6B001DCAD2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				601E3A0C24869C96001DCAD2 /* DateStringConverter.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		6050E8212483DF8400AA4EF7 = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +107,7 @@
 		6050E82C2483DF8400AA4EF7 /* MealToGoClient */ = {
 			isa = PBXGroup;
 			children = (
+				601E3A0B24869C6B001DCAD2 /* Utils */,
 				60C6E6762483EC4800878258 /* Demo */,
 				6050E8502483E15600AA4EF7 /* Views */,
 				6050E84F2483E14600AA4EF7 /* Models */,
@@ -277,6 +288,7 @@
 				60C6E67F248404EE00878258 /* DishListPage.swift in Sources */,
 				6050E8302483DF8400AA4EF7 /* SceneDelegate.swift in Sources */,
 				6050E8582483E32700AA4EF7 /* ImageWithData.swift in Sources */,
+				601E3A0D24869C96001DCAD2 /* DateStringConverter.swift in Sources */,
 				60C6E67A2483F9F900878258 /* RestaurantListPage.swift in Sources */,
 				6050E8322483DF8400AA4EF7 /* ContentView.swift in Sources */,
 			);
