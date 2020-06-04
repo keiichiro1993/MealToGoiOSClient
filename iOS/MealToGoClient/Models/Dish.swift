@@ -8,7 +8,9 @@
 
 import Foundation
 
-class Dish {
+class Dish: Identifiable {
+    var id: UUID
+    
     var DishName: String
     var DishDescription: String
     var PrimaryImageUrl: String
@@ -22,5 +24,6 @@ class Dish {
         self.Images = images
         
         PrimaryImageUrl = images.first!.URL
+        id = UUID()
     }
 }

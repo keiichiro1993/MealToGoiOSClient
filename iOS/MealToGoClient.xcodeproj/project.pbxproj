@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		601E3A0D24869C96001DCAD2 /* DateStringConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E3A0C24869C96001DCAD2 /* DateStringConverter.swift */; };
+		6046F95624892D0C00E5D68B /* DishItemControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6046F95524892D0C00E5D68B /* DishItemControl.swift */; };
 		6050E82E2483DF8400AA4EF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6050E82D2483DF8400AA4EF7 /* AppDelegate.swift */; };
 		6050E8302483DF8400AA4EF7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6050E82F2483DF8400AA4EF7 /* SceneDelegate.swift */; };
 		6050E8322483DF8400AA4EF7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6050E8312483DF8400AA4EF7 /* ContentView.swift */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		601E3A0C24869C96001DCAD2 /* DateStringConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateStringConverter.swift; sourceTree = "<group>"; };
+		6046F95524892D0C00E5D68B /* DishItemControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishItemControl.swift; sourceTree = "<group>"; };
 		6050E82A2483DF8400AA4EF7 /* MealToGoClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealToGoClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6050E82D2483DF8400AA4EF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6050E82F2483DF8400AA4EF7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				60C6E67C248404DC00878258 /* RestaurantDetailControl.swift */,
+				6046F95524892D0C00E5D68B /* DishItemControl.swift */,
 			);
 			path = CustomControls;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				6050E8582483E32700AA4EF7 /* ImageWithData.swift in Sources */,
 				601E3A0D24869C96001DCAD2 /* DateStringConverter.swift in Sources */,
 				60C6E67A2483F9F900878258 /* RestaurantListPage.swift in Sources */,
+				6046F95624892D0C00E5D68B /* DishItemControl.swift in Sources */,
 				6050E8322483DF8400AA4EF7 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct RestaurantDetailControl: View {
-    var restaurant = demoRestaurants[0]
+    var restaurant: RestaurantDetail
     var body: some View {
         HStack(alignment: .top, spacing: 5) {
             Image(restaurant.Images.first!.URL)
@@ -52,6 +52,6 @@ struct RestaurantDetailControl: View {
 
 struct RestaurantDetailControl_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantDetailControl()
+        RestaurantDetailControl(restaurant: demoRestaurants[0])
     }
 }

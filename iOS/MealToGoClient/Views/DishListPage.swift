@@ -9,30 +9,28 @@
 import SwiftUI
 
 struct DishListPage: View {
+    var restaurant: RestaurantDetail
     var body: some View {
-        ScrollView {
-            VStack {
-                VStack(spacing: 0) {
-                    Image(demoRestaurants[0].Images[1].URL)
-                        .resizable()
-                        .frame(height: 250)
-                    RestaurantDetailControl()
-                        .padding(.leading, 5.0)
-                }
-                .padding(0)
-                
-                //ScrollViewで囲ったからListじゃなくてもいいのかも
-                List {
-                    
-                    Text("test")
-                }
-            }.navigationBarTitle(demoRestaurants[0].Name)
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(spacing: 0) {
+                Image(restaurant.Images[1].URL)
+                    .resizable()
+                    .frame(height: 250)
+                RestaurantDetailControl(restaurant: restaurant)
+                    .padding(.leading, 5.0)
+            }
+            //ScrollViewで囲ったからListじゃなくてもいいのかも
+            List(restaurant.Dishes) { dish in
+                DishItemControl(dish: dish)
+            }
         }
+        .padding(0)
+        .navigationBarTitle("", displayMode: .inline)
     }
 }
 
 struct DishListPage_Previews: PreviewProvider {
     static var previews: some View {
-        DishListPage()
+        DishListPage(restaurant: demoRestaurants[0])
     }
 }
