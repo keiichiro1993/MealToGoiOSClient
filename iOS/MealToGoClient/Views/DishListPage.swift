@@ -50,6 +50,7 @@ struct DishListPage: View {
                 }
                 Text("Options")
                 OrderItemOptionsControl()
+                    .environmentObject(OrderItem(dish: self.selectedItem!))
             }
             Spacer()
             Button(action: {

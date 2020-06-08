@@ -16,6 +16,7 @@ class Dish: Identifiable {
     var PrimaryImageUrl: String
     var IsPublished: Bool
     var Images: [ImageWithData]
+    var OrderOptions: [OrderOption]
     
     init(dishName: String, dishDescription: String, isPublished: Bool, images: [ImageWithData]) {
         self.DishName = dishName
@@ -24,6 +25,24 @@ class Dish: Identifiable {
         self.Images = images
         
         PrimaryImageUrl = images.first!.URL
+        id = UUID()
+        OrderOptions = [OrderOption(name: "Size", options: ["Large", "Medium", "Small"], defaultValue: "Medium", isUIList: false), OrderOption(name: "Drink", options: ["Melon Soda", "Coke", "Sparkling Water", "Oolong tea"], defaultValue: "Oolong tea", isUIList: true)]
+    }
+}
+
+class OrderOption: Identifiable {
+    var OptionName: String
+    var OptionList: [String]
+    var DefaultValue: String
+    var IsUIList: Bool
+    var id: UUID
+    
+    init(name: String, options: [String], defaultValue: String, isUIList: Bool) {
+        self.OptionName = name
+        self.OptionList = options
+        self.DefaultValue = defaultValue
+        self.IsUIList = isUIList
+        
         id = UUID()
     }
 }

@@ -13,40 +13,57 @@ struct OrderItemOptionsControl: View {
     @State var selectedItem: Dish? = nil
     @State var amount: Int = 1
     
+    @EnvironmentObject var orderItem: OrderItem
+    
     let sizeList = ["Large","Medium","Small"]
     var body: some View {
-        Form {
-            HStack {
-                Text("Size")
-                Spacer()
-                Picker(selection: self.$selected, label: Text("Size")) {
-                    ForEach(self.sizeList, id: \.self) { size in
-                        Text(size)
-                    }
-                }
-                .pickerStyle(SegmentedPickerStyle())
-            }
-            HStack {
-                Text("Amount")
-                Spacer()
-                HStack {
-                    Button(action: {}) { Text("-") }
-                        .onTapGesture {
-                            if self.amount > 1 {
-                                self.amount = self.amount - 1
+        NavigationView {
+            Form {
+                ForEach(orderItem.OrderOptions.indices) { index in
+                    HStack {
+                        Text(self.orderItem.OrderOptions[index].OrderOption.OptionName)
+                        Spacer()
+                        if self.orderItem.OrderOptions[index].OrderOption.IsUIList {
+                            Picker(selection: self.$orderItem.OrderOptions[index].SelectedValue, label: Text("")) {
+                                ForEach(self.orderItem.OrderOptions[index].OrderOption.OptionList, id: \.self) { item in
+                                    Text(item)
+                                }
                             }
-                    }
-                    TextField("Amount", value: self.$amount, formatter: NumberFormatter())
-                        .frame(width: 50)
-                        .multilineTextAlignment(.center)
-                        .keyboardType(.numberPad)
-                    Button(action: {}) { Text("+") }
-                        .onTapGesture {
-                            self.amount = self.amount + 1
+                        } else {
+                            Picker(selection: self.$orderItem.OrderOptions[index].SelectedValue, label: Text("")) {
+                                ForEach(self.orderItem.OrderOptions[index].OrderOption.OptionList, id: \.self) { item in
+                                    Text(item)
+                                }
+                            }
+                            .pickerStyle(SegmentedPickerStyle())
+                        }
                     }
                 }
-                Spacer()
+                HStack {
+                    Text("Amount")
+                    Spacer()
+                    HStack {
+                        Button(action: {}) { Text("-") }
+                            .onTapGesture {
+                                if self.orderItem.Amount > 1 {
+                                    self.orderItem.Amount = self.orderItem.Amount - 1
+                                }
+                        }
+                        
+                        TextField("Amount", value: self.$orderItem.Amount, formatter: NumberFormatter())
+                            .frame(width: 50)
+                            .multilineTextAlignment(.center)
+                            .keyboardType(.numberPad)
+                        Button(action: {}) { Text("+") }
+                            .onTapGesture {
+                                self.orderItem.Amount = self.orderItem.Amount + 1
+                        }
+                    }
+                    Spacer()
+                }
             }
+            .navigationBarHidden(true)
+            .navigationBarTitle("", displayMode: .inline)
         }
     }
 }
@@ -54,5 +71,6 @@ struct OrderItemOptionsControl: View {
 struct OrderItemOptionsControl_Previews: PreviewProvider {
     static var previews: some View {
         OrderItemOptionsControl()
+            .environmentObject(OrderItem(dish: demoRestaurants[0].Dishes.first!))
     }
 }
