@@ -17,10 +17,12 @@ class RestaurantDetail: Identifiable {
     var Messages: [Message]
     var OpenTime: Date
     var CloseTime: Date
+    
+    var LogoImage: ImageWithData
     var Images: [ImageWithData] //アイコンのURLも追加した方がいいかも
     var AvailableTimes: [AvailableTime]
     
-    init(name: String, description: String, dishes: [Dish], messages: [Message], open: Date, close: Date, images: [ImageWithData]) {
+    init(name: String, description: String, dishes: [Dish], messages: [Message], open: Date, close: Date, images: [ImageWithData], logo: ImageWithData) {
         self.Description = description
         self.Name = name
         self.Dishes = dishes
@@ -28,6 +30,7 @@ class RestaurantDetail: Identifiable {
         self.OpenTime = open
         self.CloseTime = close
         self.Images = images
+        self.LogoImage = logo
         
         //一旦テストのために以下で実装
         self.AvailableTimes = [AvailableTime(open,close), AvailableTime(open,close), AvailableTime(open,close), AvailableTime(open,close), AvailableTime(open,close)]

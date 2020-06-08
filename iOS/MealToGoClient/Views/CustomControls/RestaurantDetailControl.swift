@@ -12,13 +12,13 @@ struct RestaurantDetailControl: View {
     var restaurant: RestaurantDetail
     var body: some View {
         HStack(alignment: .top, spacing: 5) {
-            Image(restaurant.Images.first!.URL)
+            Image(restaurant.LogoImage.URL)
                 .resizable()
                 .frame(width: 80, height: 80)
                 .cornerRadius(12)
                 .border(Color.white, width: 3)
                 .cornerRadius(5)
-                .offset(y: -20)
+                .offset(y: -25)
             
             VStack(alignment: .leading) {
                 Text(restaurant.Name)
@@ -42,7 +42,7 @@ struct RestaurantDetailControl: View {
                             }
                         }
                     })
-                }
+                }.padding(.top, -10)
             }
             .font(.footnote)
             Spacer()

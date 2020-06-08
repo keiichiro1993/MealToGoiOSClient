@@ -11,7 +11,14 @@ import SwiftUI
 struct DishItemControl: View {
     var dish: Dish
     var body: some View {
-        Text(dish.DishName)
+        HStack {
+            Image(dish.PrimaryImageUrl)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 80, height: 80)
+                .clipped()
+            Text(dish.DishName)
+        }
     }
 }
 

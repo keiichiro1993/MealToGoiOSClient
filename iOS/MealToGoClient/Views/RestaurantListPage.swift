@@ -15,7 +15,7 @@ struct RestaurantListPage: View {
                 ForEach(demoRestaurants) { restaurant in
                     NavigationLink(destination: DishListPage(restaurant: restaurant)) {
                         HStack(alignment: .top) {
-                            Image(restaurant.Images.first!.URL)
+                            Image(restaurant.LogoImage.URL)
                                 .resizable()
                                 .scaledToFill()
                                 .frame(width: 100, height: 100).clipped()

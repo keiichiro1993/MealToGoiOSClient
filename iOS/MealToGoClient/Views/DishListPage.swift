@@ -10,8 +10,12 @@ import SwiftUI
 
 struct DishListPage: View {
     var restaurant: RestaurantDetail
+    @State var isPresented: Bool = false
+    @State var selectedItem: Dish? = nil
+    
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
+        //ScrollView(.vertical) {
+        List {
             VStack(spacing: 0) {
                 Image(restaurant.Images[1].URL)
                     .resizable()
@@ -19,13 +23,43 @@ struct DishListPage: View {
                 RestaurantDetailControl(restaurant: restaurant)
                     .padding(.leading, 5.0)
             }
+            .listRowInsets(EdgeInsets())
+            .padding(.bottom, -25)
             //ScrollViewで囲ったからListじゃなくてもいいのかも
-            List(restaurant.Dishes) { dish in
-                DishItemControl(dish: dish)
+            Text("Menu")
+            ForEach(restaurant.Dishes) { dish in
+                Button(action: {
+                    self.isPresented.toggle()
+                    self.selectedItem = dish
+                }) {
+                    DishItemControl(dish: dish)
+                }
             }
+            .listRowInsets(EdgeInsets())
         }
         .padding(0)
         .navigationBarTitle("", displayMode: .inline)
+        .sheet(isPresented: $isPresented) {
+            VStack(alignment: .center) {
+                HStack(alignment: .top) {
+                    Spacer()
+                    Button("Cancel") {
+                        self.isPresented.toggle()
+                    }
+                    .padding(10)
+                }
+                Text("Options")
+                OrderItemOptionsControl()
+            }
+            Spacer()
+            Button(action: {
+                self.isPresented.toggle()
+            }) {
+                Text("Add to Cart")
+            }
+            .padding(10)
+            .padding(.bottom, 5)
+        }
     }
 }
 
