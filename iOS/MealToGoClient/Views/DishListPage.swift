@@ -12,7 +12,7 @@ struct DishListPage: View {
     var restaurant: RestaurantDetail
     @State var isPresented: Bool = false
     @State var selectedItem: Dish? = nil
-    
+
     var body: some View {
         //ScrollView(.vertical) {
         List {
