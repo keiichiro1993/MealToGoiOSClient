@@ -12,7 +12,6 @@ struct DishListPage: View {
     var restaurant: RestaurantDetail
     @EnvironmentObject var viewModel: MainViewModel
     @State var isPresented: Bool = false
-    @State var selectedItem: Dish? = nil
     @State var orderItem: OrderItem? = nil
     
     var body: some View {
@@ -31,16 +30,36 @@ struct DishListPage: View {
             Text("Menu")
             ForEach(restaurant.Dishes) { dish in
                 Button(action: {
-                    self.selectedItem = dish
                     self.orderItem = OrderItem(dish: dish)
                     self.isPresented.toggle()
-                    
-                    
                 }) {
                     DishItemControl(dish: dish)
                 }
             }
             .listRowInsets(EdgeInsets())
+        }
+        .sheet(isPresented: $isPresented) {
+            VStack(alignment: .center) {
+                HStack(alignment: .top) {
+                    Spacer()
+                    Button("Cancel") {
+                        self.isPresented.toggle()
+                    }
+                    .padding(10)
+                }
+                Text("Options")
+                OrderItemOptionsControl()
+                    .environmentObject(self.orderItem!)
+            }
+            Spacer()
+            Button(action: {
+                self.viewModel.cartItems.append(self.orderItem!)
+                self.isPresented.toggle()
+            }) {
+                Text("Add to Cart")
+            }
+            .padding(10)
+            .padding(.bottom, 5)
         }
         .padding(0)
         .navigationBarTitle("", displayMode: .inline)
@@ -48,30 +67,9 @@ struct DishListPage: View {
             NavigationLink(destination: CartPage()) {
                 Image(systemName: "cart")
                     .imageScale(.large)
-        }))
-            .sheet(isPresented: $isPresented) {
-                VStack(alignment: .center) {
-                    HStack(alignment: .top) {
-                        Spacer()
-                        Button("Cancel") {
-                            self.isPresented.toggle()
-                        }
-                        .padding(10)
-                    }
-                    Text("Options")
-                    OrderItemOptionsControl()
-                        .environmentObject(self.orderItem!)
-                }
-                Spacer()
-                Button(action: {
-                    self.viewModel.cartItems.append(self.orderItem!)
-                    self.isPresented.toggle()
-                }) {
-                    Text("Add to Cart")
-                }
-                .padding(10)
-                .padding(.bottom, 5)
-        }
+            }
+            .padding(.leading, 10)
+        ))
     }
 }
 

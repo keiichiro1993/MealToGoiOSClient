@@ -11,13 +11,17 @@ import SwiftUI
 struct DishItemControl: View {
     var dish: Dish
     var body: some View {
-        HStack {
+        HStack(alignment: .top) {
             Image(dish.PrimaryImageUrl)
                 .resizable()
                 .scaledToFill()
                 .frame(width: 80, height: 80)
                 .clipped()
-            Text(dish.DishName)
+            VStack(alignment: .leading) {
+                Text(dish.DishName)
+                    .font(.headline)
+                Text(dish.DishDescription)
+            }
         }
     }
 }
