@@ -25,7 +25,7 @@ struct DishListPage: View {
                     .padding(.leading, 5.0)
             }
             .listRowInsets(EdgeInsets())
-            .padding(.bottom, -25)
+            //.padding(.bottom, -25)
             //ScrollViewで囲ったからListじゃなくてもいいのかも
             Text("Menu")
             ForEach(restaurant.Dishes) { dish in
