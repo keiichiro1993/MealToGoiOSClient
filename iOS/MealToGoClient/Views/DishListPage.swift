@@ -53,7 +53,7 @@ struct DishListPage: View {
             }
             Spacer()
             Button(action: {
-                self.viewModel.cartItems.append(self.orderItem!)
+                self.viewModel.OrderInfo.OrderItems.append(self.orderItem!)
                 self.isPresented.toggle()
             }) {
                 Text("Add to Cart")

@@ -26,7 +26,7 @@ struct ContentView: View {
             .onEnded {
                 if $0.translation.width < -100 {
                     withAnimation {
-                        self.viewModel.showSideMenu = false
+                        self.viewModel.ShowSideMenu = false
                     }
                 }
         }
@@ -46,12 +46,12 @@ struct ContentView: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
-                    .offset(x: self.viewModel.showSideMenu ? geometry.size.width/2 : 0)
-                    .disabled(self.viewModel.showSideMenu)
+                    .offset(x: self.viewModel.ShowSideMenu ? geometry.size.width/2 : 0)
+                    .disabled(self.viewModel.ShowSideMenu)
                     .environmentObject(self.viewModel)
                     
                     
-                    if self.viewModel.showSideMenu {
+                    if self.viewModel.ShowSideMenu {
                         SideMenu()
                             .frame(width: geometry.size.width/2)
                             .transition(.move(edge: .leading))
@@ -61,7 +61,7 @@ struct ContentView: View {
                 .navigationBarItems(leading: (
                     Button(action: {
                         withAnimation {
-                            self.viewModel.showSideMenu.toggle()
+                            self.viewModel.ShowSideMenu.toggle()
                         }
                     }) {
                         Image(systemName: "line.horizontal.3")

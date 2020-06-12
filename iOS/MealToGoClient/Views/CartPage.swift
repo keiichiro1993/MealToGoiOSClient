@@ -12,26 +12,25 @@ struct CartPage: View {
     @EnvironmentObject var viewModel: MainViewModel
     
     var body: some View {
-        VStack {
-            List {
-                ForEach(viewModel.cartItems) { item in
-                    DishItemControl(dish: item.Dish)
+        ZStack {
+            VStack {
+                List {
+                    ForEach(viewModel.OrderInfo.OrderItems) { item in
+                        DishItemControl(dish: item.Dish)
+                    }
                 }
-                
+                Spacer()
+                NavigationLink(destination: OrderConfirmationPage().environmentObject(viewModel)) {
+                    Text("Order")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .frame(maxWidth:.infinity,maxHeight: 60)
+                }
+                .background(UIResources.AppThemeColor)
             }
-            Spacer()
-            Button(action:{}) {
-                Text("Order")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .frame(maxWidth:.infinity,maxHeight: 60)
-            }
-            .frame(maxWidth: .infinity)
-            //.padding(.bottom, 25)
-            .background(UIResources.AppThemeColor)
+                //.edgesIgnoringSafeArea(.bottom)
+                .navigationBarTitle("Cart", displayMode: .inline)
         }
-        //.edgesIgnoringSafeArea(.bottom)
-        .navigationBarTitle("Cart", displayMode: .inline)
     }
 }
 

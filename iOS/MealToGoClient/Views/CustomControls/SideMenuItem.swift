@@ -15,7 +15,7 @@ struct SideMenuItem: View {
         Button(action: {
             withAnimation {
                 self.viewModel.SelectedPage = self.item.1
-                self.viewModel.showSideMenu = false
+                self.viewModel.ShowSideMenu = false
             }
         }) {
             VStack {
