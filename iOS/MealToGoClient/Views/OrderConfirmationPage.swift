@@ -32,9 +32,29 @@ struct OrderConfirmationPage: View {
                     MultilineTextField("Add comment here", text: $viewModel.OrderInfo.OrderComment, onCommit: {})
                         .padding()
                 }
+                VStack(alignment: .leading) {
+                    Text("お支払い方法:")
+                    Picker(selection: $viewModel.OrderInfo.SelectedPaymentMethod.Name, label: Text("お支払い方法:")) {
+                        ForEach(["クレジットカード", "PayPay", "LinePay"], id: \.self) { item in
+                            Text(item)
+                        }
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .labelsHidden()
+                    Text("カード番号")
+                        .font(.footnote)
+                    HStack {
+                        TextField("0000",text: $viewModel.OrderInfo.SelectedPaymentMethod.Fiels[0])
+                        TextField("0000",text: $viewModel.OrderInfo.SelectedPaymentMethod.Fiels[1])
+                        TextField("0000",text: $viewModel.OrderInfo.SelectedPaymentMethod.Fiels[2])
+                        TextField("0000",text: $viewModel.OrderInfo.SelectedPaymentMethod.Fiels[3])
+                    }
+                    .multilineTextAlignment(.center)
+                    .keyboardType(.numberPad)
+                }
             }
             Spacer()
-            Button(action: {}) {Text("Confirm Order")
+            Button(action: {}) {Text("注文を確定する")
                 .font(.headline)
                 .foregroundColor(.white)
                 .frame(maxWidth:.infinity,maxHeight: 60)

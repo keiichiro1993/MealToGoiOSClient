@@ -14,4 +14,5 @@ class UIResources {
     static let AppThemeHighlightUIColor = UIColor(hex: "63342e")
     static let AppThemeColor = Color(hex: "#ed6a5a")
     static let AppThemeHighlightColor = Color(hex: "#63342e")
+    static let AppBackgroundGradient = LinearGradient(gradient: Gradient(colors: [UIResources.AppThemeColor, Color(hex: "#ec4d39")]), startPoint: .top, endPoint: .bottom)
 }

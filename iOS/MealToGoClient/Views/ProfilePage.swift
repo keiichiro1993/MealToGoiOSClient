@@ -11,7 +11,22 @@ import SwiftUI
 struct ProfilePage: View {
     var body: some View {
         List {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            HStack {
+                Text("ユーザー名:")
+                Text(SocialSignInClient.User.MtGUserName)
+            }
+            HStack {
+                Text("Email:")
+                Text(SocialSignInClient.User.Email)
+            }
+            HStack {
+                Text("ユーザーID:")
+                Text(SocialSignInClient.User.UserId)
+            }
+
+            NavigationLink(destination: LaunchPage()) {
+                Text("Sign In")
+            }
         }
         .navigationBarTitle("Profile", displayMode: .inline)
     }

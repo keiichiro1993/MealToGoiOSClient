@@ -21,7 +21,7 @@ struct CartPage: View {
                 }
                 Spacer()
                 NavigationLink(destination: OrderConfirmationPage().environmentObject(viewModel)) {
-                    Text("Order")
+                    Text("注文に進む")
                         .font(.headline)
                         .foregroundColor(.white)
                         .frame(maxWidth:.infinity,maxHeight: 60)
@@ -29,7 +29,7 @@ struct CartPage: View {
                 .background(UIResources.AppThemeColor)
             }
                 //.edgesIgnoringSafeArea(.bottom)
-                .navigationBarTitle("Cart", displayMode: .inline)
+                .navigationBarTitle("カート", displayMode: .inline)
         }
     }
 }

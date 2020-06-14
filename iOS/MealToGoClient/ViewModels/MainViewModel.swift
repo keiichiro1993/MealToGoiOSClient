@@ -11,5 +11,5 @@ import Foundation
 class MainViewModel: ObservableObject {
     @Published var SelectedPage: String = "Find on List"
     @Published var ShowSideMenu: Bool = false
-    @Published var OrderInfo: Order = Order(userInfo: UserInfo("Dummy Taro","taro20200612"))
+    @Published var OrderInfo: Order = Order()
 }

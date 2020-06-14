@@ -12,13 +12,15 @@ class Order: ObservableObject, Identifiable {
     var id: UUID
     @Published var OrderItems: [OrderItem]
     @Published var OrderComment: String
-    @Published var UserInfo: UserInfo
+    @Published var SelectedPaymentMethod: PaymentMethod
     
-    init(userInfo: UserInfo) {
+    init() {
+        self.id = UUID()
+        
         self.OrderItems = [OrderItem]()
         self.OrderComment = ""
-        self.UserInfo = userInfo
         
-        self.id = UUID()
+        // とりあえずテストで
+        self.SelectedPaymentMethod = PaymentMethod(name: "クレジットカード")
     }
 }

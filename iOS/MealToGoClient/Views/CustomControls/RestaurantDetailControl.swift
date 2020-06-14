@@ -62,6 +62,20 @@ struct RestaurantDetailControl: View {
             }
             .padding(5)
             .padding(.top, -28)
+            HStack(spacing: 1) {
+                Text("支払い方法: ")
+                ScrollView(.horizontal, content: {
+                    HStack(spacing: 5) {
+                        Text("クレジットカード")
+                        Text("/")
+                        Text("PayPay")
+                        Text("/")
+                        Text("LinePay")
+                    }
+                })
+            }
+            .padding(5)
+            .padding(.top, -12)
         }
         .font(.footnote)
     }

@@ -1,0 +1,6 @@
+framework module Pods_MealToGoClient {
+  umbrella header "Pods-MealToGoClient-umbrella.h"
+
+  export *
+  module * { export * }
+}
