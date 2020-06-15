@@ -9,8 +9,10 @@
 import Foundation
 import SwiftUI
 import GoogleSignIn
-//import FBSDKLoginKit
+import FBSDKLoginKit
 //1076073232378-0me0bu5ba51sr6u9p10t5pr55gmbam3e.apps.googleusercontent.com
+// server side:https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow#confirm
+// https://qiita.com/haru15komekome/items/8f63a6273103489503a3
 
 class SocialSignInClient: ObservableObject {
     var helper: SocialSignInHelper
@@ -22,7 +24,7 @@ class SocialSignInClient: ObservableObject {
     static var User: UserInfo = UserInfo("DummyTaro","taro20200612")
     static var OnSignedIn: () -> Void = {}
     
-    static func SetUserData(_ user: GIDGoogleUser?) {
+    static func SetUserDataWithGoogle(_ user: GIDGoogleUser?) {
         if(user != nil) {
             User.UserId = user!.userID                  // For client-side use only!
             User.IdToken = user!.authentication.idToken // Safe to send to the server
@@ -38,9 +40,39 @@ class SocialSignInClient: ObservableObject {
         }
     }
     
+    static func SetUserDataWithFacebook(_ user: LoginManagerLoginResult) {
+        User.IdToken = user.token!.tokenString
+        getFacebookUserData()
+    }
+    
     func attemptLoginGoogle(onSignedIn: @escaping () -> Void) {
         SocialSignInClient.OnSignedIn = onSignedIn
         helper.attemptLoginGoogle()
+    }
+    
+    func attemptLoginFb(onSignedIn: @escaping () -> Void) {
+        helper.attemptLoginFb(completion: { (result, error) -> Void in
+            if result != nil {
+                SocialSignInClient.SetUserDataWithFacebook(result!)
+                onSignedIn()
+            }
+        })
+    }
+    
+    static private func getFacebookUserData() {
+        let graphRequest : GraphRequest =
+            GraphRequest(graphPath: "me",
+                         parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"])
+
+        graphRequest.start(completionHandler: { (connection, result, error) -> Void in
+            if ((error) != nil) {
+                print("Error: \(String(describing: error))")
+            } else {
+                let userProfile = (result as! NSDictionary)
+                User.FullName = userProfile.object(forKey: "name") as? String ?? ""
+                User.Email = userProfile.object(forKey: "email") as? String ?? ""
+            }
+        })
     }
 }
 
@@ -58,12 +90,12 @@ struct SocialSignInHelper: UIViewRepresentable {
         GIDSignIn.sharedInstance()?.signIn()
     }
     
-    /*func attemptLoginFb(completion: @escaping (_ result: FBSDKLoginManagerLoginResult?, _ error: Error?) -> Void) {
-     let fbLoginManager: FBSDKLoginManager = FBSDKLoginManager()
-     fbLoginManager.logOut()
-     fbLoginManager.logIn(withReadPermissions: ["email"], from: UIApplication.shared.windows.last?.rootViewController) { (result, error) -> Void in
-     completion(result, error)
-     }
-     }*/
+    func attemptLoginFb(completion: @escaping (_ result: LoginManagerLoginResult?, _ error: Error?) -> Void) {
+        let fbLoginManager: LoginManager = LoginManager()
+        fbLoginManager.logOut()
+        fbLoginManager.logIn(permissions: ["public_profile", "email"], from: UIApplication.shared.windows.last?.rootViewController) { (result, error) -> Void in
+            completion(result, error)
+        }
+    }
     
 }

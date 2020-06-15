@@ -7,6 +7,7 @@ target 'MealToGoClient' do
 
   # Pods for MealToGoClient
   pod 'GoogleSignIn'
+  pod 'FBSDKLoginKit'
   
   target 'MealToGoClientTests' do
     inherit! :search_paths

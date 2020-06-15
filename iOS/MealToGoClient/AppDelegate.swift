@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             return
         }
         // Perform any operations on signed in user here.
-        SocialSignInClient.SetUserData(user!)
+        SocialSignInClient.SetUserDataWithGoogle(user!)
         // ...
     }
     

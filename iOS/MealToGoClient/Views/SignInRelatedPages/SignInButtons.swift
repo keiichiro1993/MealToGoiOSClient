@@ -14,38 +14,48 @@ struct SignInButtons: View {
     var onSignedIn: () -> Void
     var socialLogin = SocialSignInClient()
     var body: some View {
-        VStack {
-            HStack {
-                /*Button(action: self.logginFb, label: {
-                 Image("ic_facebook").foregroundColor(Color.white).frame(width: 20, height: 20)
-                 })
-                 .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-                 .background(Color("facebook"))
-                 .cornerRadius(8.0)*/
-                
-                Button(action: {
-                    //SocialSignInClient.OnSignedIn = self.onSignedIn
-                    self.socialLogin.attemptLoginGoogle(onSignedIn: self.onSignedIn)
-                }, label: {
-                    HStack {
-                        Image("btn_google_light_normal_ios")
-                            .padding(0)
-                        Text("Sign in with Google")
-                            .foregroundColor(.white)
-                            .padding(.trailing, 11)
-                    }
-                    .background(Color(hex: "#4285F4"))
-                    .cornerRadius(3)
-                    .padding()
-                })
-            }
+        VStack(spacing: 0) {
+            Button(action: {
+                self.socialLogin.attemptLoginFb(onSignedIn: self.onSignedIn)
+            }, label: {
+                HStack {
+                    Image("f_logo_RGB-White_1024")
+                        .resizable()
+                        .foregroundColor(.white)
+                        .frame(width:38, height:38)
+                        .padding(.leading, 5)
+                        .padding(.top, 5)
+                        .padding(.bottom, 5)
+                    Spacer()
+                    Text("Continue with Facebook")
+                        .foregroundColor(.white)
+                        .padding(.trailing, 11)
+                    Spacer()
+                }
+                .background(Color(hex: "#1877F2"))
+                .cornerRadius(4)
+                .padding()
+            })
+            
+            Button(action: {
+                //SocialSignInClient.OnSignedIn = self.onSignedIn
+                self.socialLogin.attemptLoginGoogle(onSignedIn: self.onSignedIn)
+            }, label: {
+                HStack {
+                    Image("btn_google_light_normal_ios")
+                        .padding(0)
+                    Spacer()
+                    Text("Sign in with Google")
+                        .foregroundColor(.white)
+                        .padding(.trailing, 11)
+                    Spacer()
+                }
+                .background(Color(hex: "#4285F4"))
+                .cornerRadius(4)
+                .padding()
+            })
+                .padding(.top, -20)
         }.navigationBarTitle(Text("Sign-In"))
-    }
-    
-    func logginFb() {
-        /*socialLogin.attemptLoginFb(completion: { result, error in
-         
-         })*/
     }
 }
 

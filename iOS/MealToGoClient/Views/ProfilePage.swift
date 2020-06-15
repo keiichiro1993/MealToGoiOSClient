@@ -13,7 +13,7 @@ struct ProfilePage: View {
         List {
             HStack {
                 Text("ユーザー名:")
-                Text(SocialSignInClient.User.MtGUserName)
+                Text(SocialSignInClient.User.FullName)
             }
             HStack {
                 Text("Email:")
