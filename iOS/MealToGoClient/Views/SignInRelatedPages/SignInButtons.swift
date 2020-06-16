@@ -12,11 +12,10 @@ import SwiftUI
 
 struct SignInButtons: View {
     var onSignedIn: () -> Void
-    var socialLogin = SocialSignInClient()
     var body: some View {
         VStack(spacing: 0) {
             Button(action: {
-                self.socialLogin.attemptLoginFb(onSignedIn: self.onSignedIn)
+                AppGlobalVariables.SignInClient.attemptLoginFb(onSignedIn: self.onSignedIn)
             }, label: {
                 HStack {
                     Image("f_logo_RGB-White_1024")
@@ -39,7 +38,7 @@ struct SignInButtons: View {
             
             Button(action: {
                 //SocialSignInClient.OnSignedIn = self.onSignedIn
-                self.socialLogin.attemptLoginGoogle(onSignedIn: self.onSignedIn)
+                AppGlobalVariables.SignInClient.attemptLoginGoogle(onSignedIn: self.onSignedIn)
             }, label: {
                 HStack {
                     Image("btn_google_light_normal_ios")

@@ -19,58 +19,77 @@ class SocialSignInClient: ObservableObject {
     
     init() {
         helper = SocialSignInHelper()
+        User = UserInfo("", "")
     }
     
-    static var User: UserInfo = UserInfo("DummyTaro","taro20200612")
-    static var OnSignedIn: () -> Void = {}
+    @Published var User: UserInfo
+    var onSignedIn: () -> Void = {}
     
-    static func SetUserDataWithGoogle(_ user: GIDGoogleUser?) {
+    func setUserDataWithGoogle(_ user: GIDGoogleUser?) {
         if(user != nil) {
-            User.UserId = user!.userID                  // For client-side use only!
-            User.IdToken = user!.authentication.idToken // Safe to send to the server
-            User.FullName = user!.profile.name
-            User.GivenName = user!.profile.givenName
-            User.FamilyName = user!.profile.familyName
-            User.Email = user!.profile.email
+            let newUser = UserInfo("","")
+            newUser.UserId = user!.userID                  // For client-side use only!
+            newUser.IdToken = user!.authentication.idToken // Safe to send to the server
+            newUser.FullName = user!.profile.name
+            newUser.GivenName = user!.profile.givenName
+            newUser.FamilyName = user!.profile.familyName
+            newUser.Email = user!.profile.email
+            self.User = newUser
             
-            OnSignedIn()
+            onSignedIn()
             
             //Clear
-            OnSignedIn = {}
+            onSignedIn = {}
         }
     }
     
-    static func SetUserDataWithFacebook(_ user: LoginManagerLoginResult) {
-        User.IdToken = user.token!.tokenString
-        getFacebookUserData()
+    func setUserDataWithFacebook(_ user: LoginManagerLoginResult) {
+        getFacebookUserData(user.token!.tokenString)
     }
     
+    func signOutAll() {
+        //SignoutFacebook
+        let fbLoginManager: LoginManager = LoginManager()
+        fbLoginManager.logOut()
+        //SignoutGoogle
+        GIDSignIn.sharedInstance().signOut()
+        
+        self.User = UserInfo("", "")
+    }
+    
+    
     func attemptLoginGoogle(onSignedIn: @escaping () -> Void) {
-        SocialSignInClient.OnSignedIn = onSignedIn
+        self.onSignedIn = onSignedIn
         helper.attemptLoginGoogle()
     }
     
     func attemptLoginFb(onSignedIn: @escaping () -> Void) {
         helper.attemptLoginFb(completion: { (result, error) -> Void in
             if result != nil {
-                SocialSignInClient.SetUserDataWithFacebook(result!)
+                self.setUserDataWithFacebook(result!)
                 onSignedIn()
             }
         })
     }
     
-    static private func getFacebookUserData() {
+    private func getFacebookUserData(_ token: String) {
         let graphRequest : GraphRequest =
             GraphRequest(graphPath: "me",
                          parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"])
-
+        
         graphRequest.start(completionHandler: { (connection, result, error) -> Void in
             if ((error) != nil) {
                 print("Error: \(String(describing: error))")
             } else {
+                let newUser = UserInfo("","")
                 let userProfile = (result as! NSDictionary)
-                User.FullName = userProfile.object(forKey: "name") as? String ?? ""
-                User.Email = userProfile.object(forKey: "email") as? String ?? ""
+                newUser.FullName = userProfile.object(forKey: "name") as? String ?? ""
+                newUser.Email = userProfile.object(forKey: "email") as? String ?? ""
+                newUser.FamilyName = userProfile.object(forKey: "last_name") as? String ?? ""
+                newUser.GivenName = userProfile.object(forKey: "first_name") as? String ?? ""
+                newUser.UserId = userProfile.object(forKey: "id") as? String ?? ""
+                newUser.IdToken = token
+                self.User = newUser
             }
         })
     }

@@ -13,20 +13,27 @@ struct ProfilePage: View {
         List {
             HStack {
                 Text("ユーザー名:")
-                Text(SocialSignInClient.User.FullName)
+                Text(AppGlobalVariables.SignInClient.User.FullName)
             }
             HStack {
                 Text("Email:")
-                Text(SocialSignInClient.User.Email)
+                Text(AppGlobalVariables.SignInClient.User.Email)
             }
             HStack {
                 Text("ユーザーID:")
-                Text(SocialSignInClient.User.UserId)
+                Text(AppGlobalVariables.SignInClient.User.UserId)
             }
 
             NavigationLink(destination: LaunchPage()) {
                 Text("Sign In")
             }
+            
+            Button(action: {
+                AppGlobalVariables.SignInClient.signOutAll()
+            }) {
+                Text("Sign Out")
+            }
+
         }
         .navigationBarTitle("Profile", displayMode: .inline)
     }

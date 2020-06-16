@@ -12,8 +12,6 @@ import GoogleSignIn
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
-    
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         // Initialize sign-in
@@ -40,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             return
         }
         // Perform any operations on signed in user here.
-        SocialSignInClient.SetUserDataWithGoogle(user!)
+        AppGlobalVariables.SignInClient.setUserDataWithGoogle(user!)
         // ...
     }
     
