@@ -16,6 +16,7 @@ import FBSDKLoginKit
 
 class SocialSignInClient: ObservableObject {
     var helper: SocialSignInHelper
+    let settings = AppGlobalSettings()
     
     init() {
         helper = SocialSignInHelper()
@@ -36,8 +37,9 @@ class SocialSignInClient: ObservableObject {
             newUser.Email = user!.profile.email
             self.User = newUser
             
-            onSignedIn()
+            settings.AuthMethod = .Google
             
+            onSignedIn()
             //Clear
             onSignedIn = {}
         }
@@ -45,6 +47,8 @@ class SocialSignInClient: ObservableObject {
     
     func setUserDataWithFacebook(_ user: LoginManagerLoginResult) {
         getFacebookUserData(user.token!.tokenString)
+        
+        settings.AuthMethod = .Facebook
     }
     
     func signOutAll() {
@@ -54,6 +58,7 @@ class SocialSignInClient: ObservableObject {
         //SignoutGoogle
         GIDSignIn.sharedInstance().signOut()
         
+        settings.AuthMethod = .None
         self.User = UserInfo("", "")
     }
     
@@ -92,6 +97,28 @@ class SocialSignInClient: ObservableObject {
                 self.User = newUser
             }
         })
+    }
+    
+    func checkIfAuthenticated() -> Bool{
+        let authMethod = settings.AuthMethod
+        switch authMethod {
+        case .Facebook:
+            if let token = AccessToken.current, !token.isExpired {
+                // User is logged in, do work such as go to next view controller.
+                getFacebookUserData(token.tokenString)
+                return true
+            }
+            return false;
+        case .Google:
+            if GIDSignIn.sharedInstance().hasPreviousSignIn() {
+                GIDSignIn.sharedInstance().restorePreviousSignIn()
+                return true
+            } else {
+                return false
+            }
+        default:
+            return false;
+        }
     }
 }
 

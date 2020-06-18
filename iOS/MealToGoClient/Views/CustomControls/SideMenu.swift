@@ -9,13 +9,13 @@
 import SwiftUI
 
 struct SideMenu: View {
-    var menuItems = [("person", "Profile"), ("list.bullet.indent", "Find on List"), ("map", "Find on Map")]
+    var menuItems = [("person", MainViewModel.Pages.Profile), ("list.bullet.indent", MainViewModel.Pages.FindOnList), ("map", MainViewModel.Pages.FindOnMap)]
     @EnvironmentObject var viewModel: MainViewModel
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             ForEach(menuItems.indices, id: \.self) { index in
                 VStack {
-                    if(String(self.viewModel.SelectedPage) == self.menuItems[index].1) {
+                    if(self.viewModel.SelectedPage == self.menuItems[index].1) {
                         SideMenuItem(item: (self.menuItems[index].0, self.menuItems[index].1, index))
                             .environmentObject(self.viewModel)
                             .background(UIResources.AppThemeHighlightColor)
@@ -46,7 +46,7 @@ struct SideMenu: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color(hex: "#333333"))
-        .edgesIgnoringSafeArea(.all)
+        .edgesIgnoringSafeArea(.bottom)
     }
 }
 

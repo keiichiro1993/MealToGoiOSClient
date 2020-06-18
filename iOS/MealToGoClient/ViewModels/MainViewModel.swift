@@ -9,7 +9,22 @@
 import Foundation
 
 class MainViewModel: ObservableObject {
-    @Published var SelectedPage: String = "Find on List"
+    enum Pages: String {
+        case FindOnList = "Find on List"
+        case FindOnMap = "Find on Map"
+        case Profile = "Profile"
+        case Auth = "Auth"
+    }
+    
+    @Published var SelectedPage: Pages
     @Published var ShowSideMenu: Bool = false
     @Published var OrderInfo: Order = Order()
+    
+    init () {
+        if !AppGlobalVariables.SignInClient.checkIfAuthenticated() {
+            SelectedPage = .Auth
+        } else {
+            SelectedPage = .FindOnList
+        }
+    }
 }

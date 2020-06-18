@@ -9,8 +9,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    //@State var showSideMenu = false
-    @ObservedObject var viewModel = MainViewModel()
+    @ObservedObject var viewModel: MainViewModel
     
     init(){
         //NavigationBar のカスタマイズ
@@ -19,6 +18,8 @@ struct ContentView: View {
         UINavigationBar.appearance().backgroundColor = .none
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor : UIColor.white, .font : UIFont(name: "HiraMaruProN-W4", size: 20)!]
         UINavigationBar.appearance().tintColor = .white
+        
+        viewModel = MainViewModel()
     }
     
     var body: some View {
@@ -35,15 +36,18 @@ struct ContentView: View {
             NavigationView {
                 ZStack(alignment: .leading) {
                     ZStack(alignment: .leading) {
-                        if self.viewModel.SelectedPage == "Find on List" {
+                        if self.viewModel.SelectedPage == .FindOnList {
                             RestaurantListPage()
                                 .environmentObject(self.viewModel)
-                        } else if self.viewModel.SelectedPage == "Find on Map" {
+                        } else if self.viewModel.SelectedPage == .FindOnMap {
                             RestaurantMapPage()
                                 .edgesIgnoringSafeArea(.all)
-                        } else if self.viewModel.SelectedPage == "Profile" {
+                        } else if self.viewModel.SelectedPage == .Profile {
                             ProfilePage()
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .environmentObject(self.viewModel)
+                        } else if self.viewModel.SelectedPage == .Auth {
+                            LaunchPage()
+                                .environmentObject(self.viewModel)
                         }
                     }
                     .offset(x: self.viewModel.ShowSideMenu ? geometry.size.width/2 : 0)
@@ -79,6 +83,10 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ForEach(["iPhone SE (2nd generation)", "iPhone 11 Pro"], id: \.self) { deviceName in
+            ContentView()
+                .previewDevice(PreviewDevice(rawValue: deviceName))
+                .previewDisplayName(deviceName)
+        }
     }
 }

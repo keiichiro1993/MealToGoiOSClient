@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SideMenuItem: View {
-    var item: (String, String, Int)
+    var item: (String, MainViewModel.Pages, Int)
     @EnvironmentObject var viewModel: MainViewModel
     var body: some View {
         Button(action: {
@@ -24,13 +24,13 @@ struct SideMenuItem: View {
                         .foregroundColor(.gray)
                         .imageScale(.large)
                         .frame(width: 20)
-                    Text(item.1)
+                    Text(item.1.rawValue)
                         .foregroundColor(.gray)
                         .font(.headline)
                     Spacer()
                 }
                 .padding()
-                .padding(.top, item.2 == 0 ? 90 : 0)
+                //.padding(.top, item.2 == 0 ? 90 : 0)
             }
         }
     }
@@ -38,6 +38,6 @@ struct SideMenuItem: View {
 
 struct SideMenuItem_Previews: PreviewProvider {
     static var previews: some View {
-        SideMenuItem(item: ("person", "Profile", 0))
+        SideMenuItem(item: ("person", .Profile, 0))
     }
 }

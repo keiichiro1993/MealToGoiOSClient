@@ -11,7 +11,15 @@
 import SwiftUI
 
 struct LaunchPage: View {
-    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @EnvironmentObject var viewModel: MainViewModel
+    init(){
+        //NavigationBar のカスタマイズ
+        UITableView.appearance().backgroundColor = .none//UIColor(named: "backgroundLight")
+        UINavigationBar.appearance().barTintColor = UIResources.AppThemeUIColor
+        UINavigationBar.appearance().backgroundColor = .none
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor : UIColor.white, .font : UIFont(name: "HiraMaruProN-W4", size: 20)!]
+        UINavigationBar.appearance().tintColor = .white
+    }
     
     var body: some View {
         ZStack {
@@ -21,7 +29,12 @@ struct LaunchPage: View {
                     .font(.largeTitle)
                     .foregroundColor(.white)
                 Spacer()
-                SignInButtons(onSignedIn: { self.mode.wrappedValue.dismiss() })
+                SignInButtons(onSignedIn: {
+                    //self.mode.wrappedValue.dismiss()
+                    withAnimation {
+                        self.viewModel.SelectedPage = .FindOnList
+                    }
+                })
             }
             .padding()
         }
@@ -37,6 +50,7 @@ struct LaunchPage_Previews: PreviewProvider {
             LaunchPage()
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)
+                .environmentObject(MainViewModel())
         }
     }
 }

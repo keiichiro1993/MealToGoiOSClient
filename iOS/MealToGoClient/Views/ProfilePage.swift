@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct ProfilePage: View {
+    @EnvironmentObject var viewModel: MainViewModel
     var body: some View {
         List {
             HStack {
@@ -24,12 +25,15 @@ struct ProfilePage: View {
                 Text(AppGlobalVariables.SignInClient.User.UserId)
             }
 
-            NavigationLink(destination: LaunchPage()) {
+            /*NavigationLink(destination: LaunchPage().environmentObject(MainViewModel())) {
                 Text("Sign In")
-            }
+            }*/
             
             Button(action: {
                 AppGlobalVariables.SignInClient.signOutAll()
+                withAnimation {
+                    self.viewModel.SelectedPage = .Auth
+                }
             }) {
                 Text("Sign Out")
             }
@@ -42,5 +46,6 @@ struct ProfilePage: View {
 struct ProfilePage_Previews: PreviewProvider {
     static var previews: some View {
         ProfilePage()
+            .environmentObject(MainViewModel())
     }
 }
