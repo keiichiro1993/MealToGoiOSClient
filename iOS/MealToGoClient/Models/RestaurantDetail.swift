@@ -18,6 +18,7 @@ class RestaurantDetail: Identifiable {
     var Messages: [Message]
     var OpenTime: Date
     var CloseTime: Date
+    var IsOpen: Bool
     
     var LogoImage: ImageWithData
     var Images: [ImageWithData] //アイコンのURLも追加した方がいいかも
@@ -40,6 +41,7 @@ class RestaurantDetail: Identifiable {
         self.AvailableTimes = [AvailableTime(open,close), AvailableTime(open,close), AvailableTime(open,close), AvailableTime(open,close), AvailableTime(open,close)]
         self.AddressInfo = Address(postalCode: "000-0000", state: "千葉県", city: "千葉市", address1: "美浜区", address2: "ダミー" )
         self.CoordinateInfo = Coordinate(Latitude: 35.6436578, Longitude: 140.0410532)
+        self.IsOpen = true
         
         id = UUID()
     }
