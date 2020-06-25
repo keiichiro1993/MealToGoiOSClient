@@ -15,31 +15,46 @@ class HttpClient {
         DefaultHeaders = [String: String]()
     }
     
-    func GetAsync(url: URL) throws -> HTTPResponseMessage {
+    // 基本的にはユーザーは GetAsync/PostAsync/SendAsync のみを利用するべき (っていうかたぶんその他は必要ないだろう)
+    func GetAsync(url: URL, queries: [URLQueryItem]? = nil, headers: [String: String]? = nil) throws -> HTTPResponseMessage {
+        let requestMessage = HTTPRequestMessage(url: url, queries: queries ?? [URLQueryItem](), headers: headers ?? [String: String](), method: .GET, body: nil)
+        
         do {
-            return try GetAsyncInternal(url: url, queries: nil, headers: nil)
+            return try SendRequestAsync(requestMessage)
         } catch let error as NSError {
             throw error
         }
     }
     
-    private func GetAsyncInternal(url: URL, queries: [URLQueryItem]?, headers: [String: String]?) throws -> HTTPResponseMessage {
-        let requestMessage = HTTPRequestMessage(url: url, queries: queries ?? [URLQueryItem](), headers: headers ?? [String: String](), method: .GET, body: nil)
-        let responseMessage = SendRequest(requestMessage)
+    func PostAsync(url: URL, body: Data, queries: [URLQueryItem]? = nil, headers: [String: String]? = nil) throws -> HTTPResponseMessage {
+        let requestMessage = HTTPRequestMessage(url: url, queries: queries ?? [URLQueryItem](), headers: headers ?? [String: String](), method: .POST, body: body)
+        
+        do {
+            return try SendRequestAsync(requestMessage)
+        } catch let error as NSError {
+            throw error
+        }
+    }
+    
+    func SendRequestAsync(_ request: HTTPRequestMessage) throws -> HTTPResponseMessage {
+        let responseMessage = sendRequestInternal(request)
         
         // エラーハンドル
         if !responseMessage.IsSuccessfulStatus() {
             if let error = responseMessage.Error {
+                NSLog(error.localizedDescription)
                 throw error
             } else {
-                throw NSError(domain: "NonSuccessfulHTTPResponseError", code: 0, userInfo: ["message" : "response status code:\(responseMessage.Status?.StatusCode ?? "none")"])
+                let message = "response status code:\(responseMessage.Status?.StatusCode ?? "none")"
+                NSLog(message)
+                throw NSError(domain: "NonSuccessfulHTTPResponseError", code: 0, userInfo: ["message" : message])
             }
         }
         
         return responseMessage
     }
     
-    func SendRequest(_ request: HTTPRequestMessage) -> HTTPResponseMessage {
+    private func sendRequestInternal(_ request: HTTPRequestMessage) -> HTTPResponseMessage {
         var responseMessage = HTTPResponseMessage()
         let condition = NSCondition()
         
@@ -152,7 +167,7 @@ class HttpClient {
             switch code {
             case "200":
                 Status = .OK
-            case "206":
+            case "406":
                 Status = .NotAcceptable
             case "404":
                 Status = .NotFound
