@@ -42,8 +42,8 @@ class SocialSignInClient: ObservableObject {
             onSignedIn()
             //Clear
             onSignedIn = {}
-            print("token1: \(user!.authentication.idToken)")
-            NSLog("expiration: \(user!.authentication.idTokenExpirationDate)")
+            print("token1: \(user!.authentication.idToken ?? "none")")
+            NSLog("expiration: \(user!.authentication.idTokenExpirationDate ?? Date())")
             NSLog("token2: \(newUser.IdToken)")
         }
     }
