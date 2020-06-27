@@ -10,7 +10,8 @@ import SwiftUI
 
 struct DishListPage: View {
     var restaurant: RestaurantDetail
-    @EnvironmentObject var viewModel: MainViewModel
+    //var viewModel: DishListPageViewModel = DishListPageViewModel(restaurant: ) restaurant を Restaurantのオブジェクトにして、引数に渡す。
+    @EnvironmentObject var globalViewModel: MainViewModel
     @State var isPresented: Bool = false
     @State var orderItem: OrderItem? = nil
     
@@ -53,7 +54,7 @@ struct DishListPage: View {
             }
             Spacer()
             Button(action: {
-                self.viewModel.OrderInfo.OrderItems.append(self.orderItem!)
+                self.globalViewModel.OrderInfo.OrderItems.append(self.orderItem!)
                 self.isPresented.toggle()
             }) {
                 Text("Add to Cart")

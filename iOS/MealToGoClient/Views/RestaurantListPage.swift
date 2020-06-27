@@ -9,12 +9,13 @@
 import SwiftUI
 
 struct RestaurantListPage: View {
-    @EnvironmentObject var viewModel: MainViewModel
+    var viewModel: RestaurantListPageViewModel = RestaurantListPageViewModel()//TODO: viewにも反映させる
+    @EnvironmentObject var globalViewModel: MainViewModel
     var body: some View {
         ZStack(alignment: .leading) {
             List {
                 ForEach(demoRestaurants) { restaurant in
-                    NavigationLink(destination: DishListPage(restaurant: restaurant).environmentObject(self.viewModel)) {
+                    NavigationLink(destination: DishListPage(restaurant: restaurant).environmentObject(self.globalViewModel)) {
                         HStack(alignment: .top) {
                             Image(restaurant.LogoImage.URL)
                                 .resizable()

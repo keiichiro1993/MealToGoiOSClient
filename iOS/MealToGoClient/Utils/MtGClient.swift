@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MealToGoHTTPClient {
+class MtGClient {
     private let urlBase = "http://127.0.0.1:8081"
     private var token: String
     private var client: HttpClient
