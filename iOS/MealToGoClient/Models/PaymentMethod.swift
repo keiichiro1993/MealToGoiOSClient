@@ -8,14 +8,31 @@
 
 import Foundation
 
-class PaymentMethod: ObservableObject {
+class PaymentMethod: Codable, ObservableObject {
     var Name: String
-    
     //デバッグ用
-    @Published var Fiels: [String] = ["","","",""]
+    @Published var Fields: [String]
     
     init(name: String) {
         self.Name = name
+        self.Fields = ["","","",""]
     }
     
+    ///Conform Codable
+    enum CodingKeys: CodingKey {
+        case Fields
+        case Name
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        Name = try container.decode(String.self, forKey: .Name)
+        Fields = try container.decode([String].self, forKey: .Fields)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(Name, forKey: .Name)
+        try container.encode(Fields, forKey: .Fields)
+    }
 }

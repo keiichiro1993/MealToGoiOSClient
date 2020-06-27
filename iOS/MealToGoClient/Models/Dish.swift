@@ -35,7 +35,7 @@ class OrderOption: Codable, Identifiable {
     var OptionList: [String]
     var DefaultValue: String
     var IsUIList: Bool
-    var id: UUID
+    var id: String
     
     init(name: String, options: [String], defaultValue: String, isUIList: Bool) {
         self.OptionName = name
@@ -43,6 +43,6 @@ class OrderOption: Codable, Identifiable {
         self.DefaultValue = defaultValue
         self.IsUIList = isUIList
         
-        id = UUID()
+        id = UUID().uuidString
     }
 }
