@@ -22,10 +22,17 @@ class MealToGoClientTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        
+        let postUrl = URL(string: "http://127.0.0.1:8081/users/oauth2")
+        let postData = """
+        {
+            "externalToken" : "",
+            "authenticationProvider" : "google"
+        }
+        """.data(using: .utf8)
         do {
             let client = HttpClient()
-            let response = try client.GetAsync(url: URL(string: "https://google.com")!)
+            //let response = try client.GetAsync(url: URL(string: "https://google.com")!)
+            let response = try client.PostAsync(url: postUrl!, body: postData!)
             print(response.ReadResponseAsString())
         } catch let error as NSError {
             print(error.domain)

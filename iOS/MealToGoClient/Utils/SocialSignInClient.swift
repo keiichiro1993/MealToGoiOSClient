@@ -42,9 +42,25 @@ class SocialSignInClient: ObservableObject {
             onSignedIn()
             //Clear
             onSignedIn = {}
-            print("token1: \(user!.authentication.idToken ?? "none")")
+            print("token: \(user!.authentication.idToken ?? "none")")
             NSLog("expiration: \(user!.authentication.idTokenExpirationDate ?? Date())")
-            NSLog("token2: \(newUser.IdToken)")
+            
+            NSLog("Authenticating with MtG...")
+            let postUrl = URL(string: "http://127.0.0.1:8081/users/oauth2")
+            let postData = """
+                {
+                "externalToken" : "\(user!.authentication.idToken ?? "none")",
+                "authenticationProvider" : "google"
+                }
+                """.data(using: .utf8)
+            do {
+                let client = HttpClient()
+                let response = try client.PostAsync(url: postUrl!, body: postData!)
+                NSLog("response: \(response.Body!)")
+            } catch let error as NSError {
+                NSLog("Exception occured in auth.")
+                AlertUtil.ShowErrorAlert(error: error)
+            }
         }
     }
     
