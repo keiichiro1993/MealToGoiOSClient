@@ -16,14 +16,16 @@ class Restaurant: Codable, Identifiable {
     var IsOpen: Bool
     var CoordinateInfo: Coordinate
     var LogoImage: ImageWithData
+    var WaitMin: Int
     
-    init(id: String, name: String, description: String, isOpen: Bool, coordinate: Coordinate, logoImage: ImageWithData) {
+    init(id: String, name: String, description: String, isOpen: Bool, coordinate: Coordinate, logoImage: ImageWithData, waitMin: Int) {
         self.id = id
         self.Name = name
         self.Description = description
         self.IsOpen = isOpen
         self.CoordinateInfo = coordinate
         self.LogoImage = logoImage
+        self.WaitMin = waitMin
     }
 }
 
