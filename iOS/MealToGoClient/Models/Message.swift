@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Message {
+class Message: Codable {
     var Body: String
     var Timestamp: Date
     var IsRead: Bool

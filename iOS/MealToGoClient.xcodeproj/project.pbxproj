@@ -28,7 +28,7 @@
 		6050E8372483DF8600AA4EF7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6050E8362483DF8600AA4EF7 /* Preview Assets.xcassets */; };
 		6050E83A2483DF8600AA4EF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6050E8382483DF8600AA4EF7 /* LaunchScreen.storyboard */; };
 		6050E8452483DF8700AA4EF7 /* MealToGoClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6050E8442483DF8700AA4EF7 /* MealToGoClientTests.swift */; };
-		6050E8522483E23900AA4EF7 /* RestaurantDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6050E8512483E23900AA4EF7 /* RestaurantDetail.swift */; };
+		6050E8522483E23900AA4EF7 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6050E8512483E23900AA4EF7 /* Restaurant.swift */; };
 		6050E8542483E2B500AA4EF7 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6050E8532483E2B500AA4EF7 /* Dish.swift */; };
 		6050E8562483E2DD00AA4EF7 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6050E8552483E2DD00AA4EF7 /* Message.swift */; };
 		6050E8582483E32700AA4EF7 /* ImageWithData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6050E8572483E32700AA4EF7 /* ImageWithData.swift */; };
@@ -93,7 +93,7 @@
 		6050E8402483DF8700AA4EF7 /* MealToGoClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MealToGoClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6050E8442483DF8700AA4EF7 /* MealToGoClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealToGoClientTests.swift; sourceTree = "<group>"; };
 		6050E8462483DF8700AA4EF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6050E8512483E23900AA4EF7 /* RestaurantDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetail.swift; sourceTree = "<group>"; };
+		6050E8512483E23900AA4EF7 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		6050E8532483E2B500AA4EF7 /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		6050E8552483E2DD00AA4EF7 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		6050E8572483E32700AA4EF7 /* ImageWithData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWithData.swift; sourceTree = "<group>"; };
@@ -239,7 +239,7 @@
 		6050E84F2483E14600AA4EF7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				6050E8512483E23900AA4EF7 /* RestaurantDetail.swift */,
+				6050E8512483E23900AA4EF7 /* Restaurant.swift */,
 				6050E8532483E2B500AA4EF7 /* Dish.swift */,
 				6050E8552483E2DD00AA4EF7 /* Message.swift */,
 				6050E8572483E32700AA4EF7 /* ImageWithData.swift */,
@@ -510,7 +510,7 @@
 				6050E8542483E2B500AA4EF7 /* Dish.swift in Sources */,
 				6032BED6249632360096757B /* LaunchPage.swift in Sources */,
 				6080EACE248E722800530823 /* OrderItemViewModel.swift in Sources */,
-				6050E8522483E23900AA4EF7 /* RestaurantDetail.swift in Sources */,
+				6050E8522483E23900AA4EF7 /* Restaurant.swift in Sources */,
 				6050E8562483E2DD00AA4EF7 /* Message.swift in Sources */,
 				604CB3762493BE2800B6D7A5 /* UserInfo.swift in Sources */,
 				6081F54924A39950008F651D /* MealToGoHTTPClient.swift in Sources */,

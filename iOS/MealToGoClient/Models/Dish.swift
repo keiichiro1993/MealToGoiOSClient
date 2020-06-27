@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Dish: Identifiable {
+class Dish: Codable, Identifiable {
     var id: UUID
     
     var DishName: String
@@ -30,7 +30,7 @@ class Dish: Identifiable {
     }
 }
 
-class OrderOption: Identifiable {
+class OrderOption: Codable, Identifiable {
     var OptionName: String
     var OptionList: [String]
     var DefaultValue: String

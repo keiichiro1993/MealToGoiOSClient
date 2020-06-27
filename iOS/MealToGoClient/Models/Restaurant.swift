@@ -8,7 +8,26 @@
 
 import Foundation
 
-class RestaurantDetail: Identifiable {
+class Restaurant: Codable, Identifiable {
+    var id: String
+    
+    var Name: String
+    var Description: String
+    var IsOpen: Bool
+    var CoordinateInfo: Coordinate
+    var LogoImage: ImageWithData
+    
+    init(id: String, name: String, description: String, isOpen: Bool, coordinate: Coordinate, logoImage: ImageWithData) {
+        self.id = id
+        self.Name = name
+        self.Description = description
+        self.IsOpen = isOpen
+        self.CoordinateInfo = coordinate
+        self.LogoImage = logoImage
+    }
+}
+
+class RestaurantDetail: Codable, Identifiable {
     var id: UUID
     
     //TODO: 一覧時に必要な情報と詳細表示時にのみ必要な情報を分けたい
@@ -47,7 +66,7 @@ class RestaurantDetail: Identifiable {
     }
 }
 
-struct AvailableTime: Identifiable {
+struct AvailableTime: Codable, Identifiable {
     var Begin: Date
     var End: Date
     
@@ -59,7 +78,7 @@ struct AvailableTime: Identifiable {
     }
 }
 
-struct Address {
+struct Address: Codable {
     var PostalCode: String
     var State: String
     var City: String
@@ -75,7 +94,7 @@ struct Address {
     }
 }
 
-struct Coordinate {
+struct Coordinate: Codable {
     var Latitude: Double
     var Longitude: Double
 }

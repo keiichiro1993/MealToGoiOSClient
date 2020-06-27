@@ -37,16 +37,17 @@ class HttpClient {
     }
     
     func SendRequestAsync(_ request: HTTPRequestMessage) throws -> HTTPResponseMessage {
+        NSLog("SendRequestAsnyc(): \(request.Method) \(request.Url.absoluteString)")
         let responseMessage = sendRequestInternal(request)
         
         // エラーハンドル
         if !responseMessage.IsSuccessfulStatus() {
             if let error = responseMessage.Error {
-                NSLog(error.localizedDescription)
+                NSLog("Error in SendRequestAsync():" + error.localizedDescription)
                 throw error
             } else {
-                let message = "response status code:\(responseMessage.Status?.StatusCode ?? "none")"
-                NSLog(message)
+                let message = "response status code -> \(responseMessage.Status?.StatusCode ?? "none")"
+                NSLog("Error in SendRequestAsync():" + message)
                 throw NSError(domain: "NonSuccessfulHTTPResponseError", code: 0, userInfo: ["message" : message])
             }
         }

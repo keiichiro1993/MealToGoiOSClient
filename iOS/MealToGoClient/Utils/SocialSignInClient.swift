@@ -42,8 +42,8 @@ class SocialSignInClient: ObservableObject {
             onSignedIn()
             //Clear
             onSignedIn = {}
-            print("token: \(user!.authentication.idToken ?? "none")")
-            NSLog("expiration: \(user!.authentication.idTokenExpirationDate ?? Date())")
+            //print("token: \(user!.authentication.idToken ?? "none")")
+            NSLog("Google token expiration: \(user!.authentication.idTokenExpirationDate ?? Date())")
             
             NSLog("Authenticating with MtG...")
             let postUrl = URL(string: "http://127.0.0.1:8081/users/oauth2")

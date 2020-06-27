@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ImageWithData {
+class ImageWithData: Codable {
     var URL: String
     var Description: String
     var IsPrimary: Bool
