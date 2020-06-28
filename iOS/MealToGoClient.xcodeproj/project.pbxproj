@@ -13,6 +13,8 @@
 		6032BED2249610010096757B /* SignInButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6032BED1249610010096757B /* SignInButtons.swift */; };
 		6032BED42496129B0096757B /* SignInIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6032BED32496129B0096757B /* SignInIcons.xcassets */; };
 		6032BED6249632360096757B /* LaunchPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6032BED5249632360096757B /* LaunchPage.swift */; };
+		6046F61224A814A2002958CE /* JsonOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6046F61124A814A2002958CE /* JsonOrder.swift */; };
+		6046F61424A81A86002958CE /* OrderConfiemationPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6046F61324A81A86002958CE /* OrderConfiemationPageViewModel.swift */; };
 		6046F95624892D0C00E5D68B /* DishItemControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6046F95524892D0C00E5D68B /* DishItemControl.swift */; };
 		604A1785248FDB510076900C /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A1784248FDB510076900C /* ColorExtensions.swift */; };
 		604CB3722493B79C00B6D7A5 /* OrderConfirmationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604CB3712493B79C00B6D7A5 /* OrderConfirmationPage.swift */; };
@@ -76,6 +78,8 @@
 		6032BED1249610010096757B /* SignInButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButtons.swift; sourceTree = "<group>"; };
 		6032BED32496129B0096757B /* SignInIcons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SignInIcons.xcassets; sourceTree = "<group>"; };
 		6032BED5249632360096757B /* LaunchPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPage.swift; sourceTree = "<group>"; };
+		6046F61124A814A2002958CE /* JsonOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonOrder.swift; sourceTree = "<group>"; };
+		6046F61324A81A86002958CE /* OrderConfiemationPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfiemationPageViewModel.swift; sourceTree = "<group>"; };
 		6046F95524892D0C00E5D68B /* DishItemControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishItemControl.swift; sourceTree = "<group>"; };
 		604A1784248FDB510076900C /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		604CB3712493B79C00B6D7A5 /* OrderConfirmationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationPage.swift; sourceTree = "<group>"; };
@@ -184,6 +188,14 @@
 			path = SignInRelatedPages;
 			sourceTree = "<group>";
 		};
+		6046F61024A8147B002958CE /* JsonModels */ = {
+			isa = PBXGroup;
+			children = (
+				6046F61124A814A2002958CE /* JsonOrder.swift */,
+			);
+			path = JsonModels;
+			sourceTree = "<group>";
+		};
 		6050E8212483DF8400AA4EF7 = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +255,7 @@
 		6050E84F2483E14600AA4EF7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6046F61024A8147B002958CE /* JsonModels */,
 				6080EACD248E722800530823 /* OrderItem.swift */,
 				6050E8512483E23900AA4EF7 /* Restaurant.swift */,
 				6050E8532483E2B500AA4EF7 /* Dish.swift */,
@@ -277,6 +290,7 @@
 				6053543724910295008D7917 /* MainViewModel.swift */,
 				60EC64F524A768C300F519F6 /* DishListPageViewModel.swift */,
 				60EC64F724A7715800F519F6 /* RestaurantListPageViewModel.swift */,
+				6046F61324A81A86002958CE /* OrderConfiemationPageViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -525,10 +539,12 @@
 				60C6E67D248404DC00878258 /* RestaurantDetailControl.swift in Sources */,
 				60EC64F424A6207600F519F6 /* AlertUtil.swift in Sources */,
 				6081F547249FAF80008F651D /* HttpClient.swift in Sources */,
+				6046F61424A81A86002958CE /* OrderConfiemationPageViewModel.swift in Sources */,
 				60C6E67F248404EE00878258 /* DishListPage.swift in Sources */,
 				604CB37A2493D51000B6D7A5 /* MapUtil.swift in Sources */,
 				6053544024911505008D7917 /* RestaurantMapControl.swift in Sources */,
 				6051ABDC249A5EA400AA593E /* AppGlobalSettings.swift in Sources */,
+				6046F61224A814A2002958CE /* JsonOrder.swift in Sources */,
 				6050E8302483DF8400AA4EF7 /* SceneDelegate.swift in Sources */,
 				60F5B250249910080078F326 /* AppGlobalVariables.swift in Sources */,
 				6053543A24910995008D7917 /* SettingsPage.swift in Sources */,

@@ -54,7 +54,10 @@ struct DishListPage: View {
             }
             Spacer()
             Button(action: {
-                self.globalViewModel.OrderInfo.OrderItems.append(self.orderItem!)
+                if AppGlobalVariables.OrderCart.RestaurantId != self.restaurant.id {
+                    AppGlobalVariables.OrderCart = Order(restaurantId: self.restaurant.id)
+                }
+                AppGlobalVariables.OrderCart.OrderItems.append(self.orderItem!)
                 self.isPresented.toggle()
             }) {
                 Text("Add to Cart")

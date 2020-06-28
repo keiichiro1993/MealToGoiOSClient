@@ -46,7 +46,7 @@ class SocialSignInClient: ObservableObject {
             NSLog("Google token expiration: \(user!.authentication.idTokenExpirationDate ?? Date())")
             
             NSLog("Authenticating with MtG...")
-            let postUrl = URL(string: "http://127.0.0.1:8081/users/oauth2")
+            /*let postUrl = URL(string: "http://127.0.0.1:8081/users/oauth2")
             let postData = """
                 {
                 "externalToken" : "\(user!.authentication.idToken ?? "none")",
@@ -60,7 +60,7 @@ class SocialSignInClient: ObservableObject {
             } catch let error as NSError {
                 NSLog("Exception occured in auth.")
                 AlertUtil.ShowErrorAlert(error: error)
-            }
+            }*/
         }
     }
     

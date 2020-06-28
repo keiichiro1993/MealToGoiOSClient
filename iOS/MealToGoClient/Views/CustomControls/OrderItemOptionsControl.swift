@@ -21,17 +21,17 @@ struct OrderItemOptionsControl: View {
             Form {
                 ForEach(orderItem.OrderOptions.indices) { index in
                     HStack {
-                        Text(self.orderItem.OrderOptions[index].OrderOption.OptionName)
+                        Text(self.orderItem.OrderOptions[index].OrderOptionItem.OptionName)
                         Spacer()
-                        if self.orderItem.OrderOptions[index].OrderOption.IsUIList {
+                        if self.orderItem.OrderOptions[index].OrderOptionItem.IsUIList {
                             Picker(selection: self.$orderItem.OrderOptions[index].SelectedValue, label: Text("")) {
-                                ForEach(self.orderItem.OrderOptions[index].OrderOption.OptionList, id: \.self) { item in
+                                ForEach(self.orderItem.OrderOptions[index].OrderOptionItem.OptionList, id: \.self) { item in
                                     Text(item)
                                 }
                             }
                         } else {
                             Picker(selection: self.$orderItem.OrderOptions[index].SelectedValue, label: Text("")) {
-                                ForEach(self.orderItem.OrderOptions[index].OrderOption.OptionList, id: \.self) { item in
+                                ForEach(self.orderItem.OrderOptions[index].OrderOptionItem.OptionList, id: \.self) { item in
                                     Text(item)
                                 }
                             }

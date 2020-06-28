@@ -30,7 +30,7 @@ class Restaurant: Codable, Identifiable {
 }
 
 class RestaurantDetail: Codable, Identifiable {
-    var id: UUID
+    var id: String
     
     //TODO: 一覧時に必要な情報と詳細表示時にのみ必要な情報を分けたい
     var Name: String
@@ -64,7 +64,7 @@ class RestaurantDetail: Codable, Identifiable {
         self.CoordinateInfo = Coordinate(Latitude: 35.6436578, Longitude: 140.0410532)
         self.IsOpen = true
         
-        id = UUID()
+        id = UUID().uuidString
     }
 }
 

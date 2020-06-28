@@ -15,8 +15,8 @@ struct CartPage: View {
         ZStack {
             VStack {
                 List {
-                    ForEach(viewModel.OrderInfo.OrderItems) { item in
-                        DishItemControl(dish: item.Dish)
+                    ForEach(AppGlobalVariables.OrderCart.OrderItems) { item in
+                        DishItemControl(dish: item.DishItem)
                     }
                 }
                 Spacer()

@@ -11,4 +11,5 @@ import Foundation
 class AppGlobalVariables {
     static var SignInClient: SocialSignInClient = SocialSignInClient()
     static var Token: String = ""
+    static var OrderCart: Order = Order(restaurantId: "")
 }

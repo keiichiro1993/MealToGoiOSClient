@@ -18,7 +18,7 @@ class MainViewModel: ObservableObject {
     
     @Published var SelectedPage: Pages
     @Published var ShowSideMenu: Bool = false
-    @Published var OrderInfo: Order = Order()
+    //@Published var OrderInfo: Order = Order(restaurantId: "")
     
     init () {
         if !AppGlobalVariables.SignInClient.checkIfAuthenticated() {

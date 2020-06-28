@@ -9,7 +9,9 @@
 import SwiftUI
 
 struct OrderConfirmationPage: View {
-    @EnvironmentObject var viewModel: MainViewModel
+    //@EnvironmentObject var viewModel: MainViewModel
+    @ObservedObject var viewModel = OrderConfirmationPageViewModel()
+    
     var body: some View {
         VStack {
             Text("Confirm your order")
@@ -25,16 +27,16 @@ struct OrderConfirmationPage: View {
                 }
                 HStack {
                     Text("商品数：")
-                    Text(String(viewModel.OrderInfo.OrderItems.count))
+                    Text(String(AppGlobalVariables.OrderCart.OrderItems.count))
                 }
                 VStack(alignment: .leading) {
                     Text("要望/店舗への連絡事項:")
-                    MultilineTextField("Add comment here", text: $viewModel.OrderInfo.OrderComment, onCommit: {})
+                    MultilineTextField("Add comment here", text: $viewModel.OrderCart.OrderComment, onCommit: {})
                         .padding()
                 }
                 VStack(alignment: .leading) {
                     Text("お支払い方法:")
-                    Picker(selection: $viewModel.OrderInfo.SelectedPaymentMethod.Name, label: Text("お支払い方法:")) {
+                    Picker(selection: $viewModel.OrderCart.SelectedPaymentMethod.Name, label: Text("お支払い方法:")) {
                         ForEach(["クレジットカード", "PayPay", "LinePay"], id: \.self) { item in
                             Text(item)
                         }
@@ -44,10 +46,10 @@ struct OrderConfirmationPage: View {
                     Text("カード番号")
                         .font(.footnote)
                     HStack {
-                        TextField("0000",text: $viewModel.OrderInfo.SelectedPaymentMethod.Fiels[0])
-                        TextField("0000",text: $viewModel.OrderInfo.SelectedPaymentMethod.Fiels[1])
-                        TextField("0000",text: $viewModel.OrderInfo.SelectedPaymentMethod.Fiels[2])
-                        TextField("0000",text: $viewModel.OrderInfo.SelectedPaymentMethod.Fiels[3])
+                        TextField("0000",text: $viewModel.OrderCart.SelectedPaymentMethod.Fields[0])
+                        TextField("0000",text: $viewModel.OrderCart.SelectedPaymentMethod.Fields[1])
+                        TextField("0000",text: $viewModel.OrderCart.SelectedPaymentMethod.Fields[2])
+                        TextField("0000",text: $viewModel.OrderCart.SelectedPaymentMethod.Fields[3])
                     }
                     .multilineTextAlignment(.center)
                     .keyboardType(.numberPad)
@@ -68,6 +70,5 @@ struct OrderConfirmationPage: View {
 struct OrderConfirmationPage_Previews: PreviewProvider {
     static var previews: some View {
         OrderConfirmationPage()
-            .environmentObject(MainViewModel())
     }
 }

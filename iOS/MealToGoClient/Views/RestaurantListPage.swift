@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct RestaurantListPage: View {
-    var viewModel: RestaurantListPageViewModel = RestaurantListPageViewModel()//TODO: viewにも反映させる
+    //var viewModel: RestaurantListPageViewModel = RestaurantListPageViewModel()//TODO: viewにも反映させる
     @EnvironmentObject var globalViewModel: MainViewModel
     var body: some View {
         ZStack(alignment: .leading) {
