@@ -57,7 +57,7 @@ class HttpClient {
     
     private func sendRequestInternal(_ request: HTTPRequestMessage) -> HTTPResponseMessage {
         var responseMessage = HTTPResponseMessage()
-        let condition = NSCondition()
+        let semaphore = DispatchSemaphore(value: 0)
         
         let mergedHeaders = DefaultHeaders.merging(request.Headers) { $1 }
         
@@ -82,12 +82,12 @@ class HttpClient {
             if let error = error {
                 responseMessage.Error = error
             }
+            
+            semaphore.signal()
         }
         
-        condition.lock()
         task.resume()
-        condition.wait()
-        condition.unlock()
+        semaphore.wait()
         
         return responseMessage
     }

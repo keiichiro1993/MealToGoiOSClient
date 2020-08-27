@@ -10,4 +10,13 @@ import Foundation
 
 class OrderConfirmationPageViewModel: ObservableObject {
     @Published var OrderCart: Order = AppGlobalVariables.OrderCart
+    @Published var paymentContextDelegate = PaymentContextDelegate()
+    @Published var totalPrice = 0
+    
+    init() {
+        for order in AppGlobalVariables.OrderCart.OrderItems {
+            totalPrice += order.DishItem.Price
+        }
+        paymentContextDelegate.InitPaymentContext(amount: totalPrice)
+    }
 }

@@ -46,21 +46,12 @@ class SocialSignInClient: ObservableObject {
             NSLog("Google token expiration: \(user!.authentication.idTokenExpirationDate ?? Date())")
             
             NSLog("Authenticating with MtG...")
-            /*let postUrl = URL(string: "http://127.0.0.1:8081/users/oauth2")
-            let postData = """
-                {
-                "externalToken" : "\(user!.authentication.idToken ?? "none")",
-                "authenticationProvider" : "google"
-                }
-                """.data(using: .utf8)
             do {
-                let client = HttpClient()
-                let response = try client.PostAsync(url: postUrl!, body: postData!)
-                NSLog("response: \(response.Body!)")
+                try MtGClient.GetJwtToken(idToken: newUser.IdToken)
             } catch let error as NSError {
-                NSLog("Exception occured in auth.")
+                NSLog("Exception occured in auth.\(error.localizedDescription)")
                 AlertUtil.ShowErrorAlert(error: error)
-            }*/
+            }
         }
     }
     
@@ -114,6 +105,14 @@ class SocialSignInClient: ObservableObject {
                 newUser.UserId = userProfile.object(forKey: "id") as? String ?? ""
                 newUser.IdToken = token
                 self.User = newUser
+                
+                NSLog("Authenticating with MtG...")
+                do {
+                    try MtGClient.GetJwtToken(idToken: newUser.IdToken)
+                } catch let error as NSError {
+                    NSLog("Exception occured in auth.\(error.localizedDescription)")
+                    AlertUtil.ShowErrorAlert(error: error)
+                }
             }
         })
     }
@@ -163,4 +162,10 @@ struct SocialSignInHelper: UIViewRepresentable {
         }
     }
     
+}
+
+struct SocialSignInClient_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+    }
 }

@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import Stripe
 
 class AppGlobalVariables {
     static var SignInClient: SocialSignInClient = SocialSignInClient()
     static var Token: String = ""
     static var OrderCart: Order = Order(restaurantId: "")
+    static var JwtToken: TokenResponse?
+    static var StripeCustomerContext: STPCustomerContext?
 }

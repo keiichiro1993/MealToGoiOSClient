@@ -17,12 +17,14 @@ class Dish: Codable, Identifiable {
     var IsPublished: Bool
     var Images: [ImageWithData]
     var OrderOptions: [OrderOption]
+    var Price: Int
     
     init(dishName: String, dishDescription: String, isPublished: Bool, images: [ImageWithData]) {
         self.DishName = dishName
         self.DishDescription = dishDescription
         self.IsPublished = isPublished
         self.Images = images
+        self.Price = 500//for debug
         
         PrimaryImageUrl = images.first!.URL
         id = UUID()

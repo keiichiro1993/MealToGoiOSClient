@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		02F22765221287F29AA34871 /* Pods_MealToGoClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B633865365209DBD5962B85 /* Pods_MealToGoClientTests.framework */; };
+		600B576524AF4E850094C669 /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600B576424AF4E850094C669 /* TokenResponse.swift */; };
 		601E3A0D24869C96001DCAD2 /* DateStringConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E3A0C24869C96001DCAD2 /* DateStringConverter.swift */; };
 		6032BECF2496029B0096757B /* SocialSignInClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6032BECE2496029B0096757B /* SocialSignInClient.swift */; };
 		6032BED2249610010096757B /* SignInButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6032BED1249610010096757B /* SignInButtons.swift */; };
@@ -16,6 +17,7 @@
 		6046F61224A814A2002958CE /* JsonOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6046F61124A814A2002958CE /* JsonOrder.swift */; };
 		6046F61424A81A86002958CE /* OrderConfiemationPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6046F61324A81A86002958CE /* OrderConfiemationPageViewModel.swift */; };
 		6046F95624892D0C00E5D68B /* DishItemControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6046F95524892D0C00E5D68B /* DishItemControl.swift */; };
+		6049B08324DF8E4B000B34EB /* StripeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6049B08224DF8E4B000B34EB /* StripeClient.swift */; };
 		604A1785248FDB510076900C /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A1784248FDB510076900C /* ColorExtensions.swift */; };
 		604CB3722493B79C00B6D7A5 /* OrderConfirmationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604CB3712493B79C00B6D7A5 /* OrderConfirmationPage.swift */; };
 		604CB3742493BC9B00B6D7A5 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604CB3732493BC9B00B6D7A5 /* Order.swift */; };
@@ -42,6 +44,8 @@
 		6053543C24910D23008D7917 /* CartPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053543B24910D23008D7917 /* CartPage.swift */; };
 		6053543E24911464008D7917 /* RestaurantMapPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053543D24911464008D7917 /* RestaurantMapPage.swift */; };
 		6053544024911505008D7917 /* RestaurantMapControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053543F24911505008D7917 /* RestaurantMapControl.swift */; };
+		6053F79E24F3EDA500FEB3B6 /* StripePaymentControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053F79D24F3EDA500FEB3B6 /* StripePaymentControlViewModel.swift */; };
+		6053F7A024F7F45900FEB3B6 /* JsonPaymentIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053F79F24F7F45900FEB3B6 /* JsonPaymentIntent.swift */; };
 		606828102491193200B66848 /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6068280F2491193200B66848 /* ProfilePage.swift */; };
 		6080EACB248E679F00530823 /* OrderItemOptionsControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6080EACA248E679F00530823 /* OrderItemOptionsControl.swift */; };
 		6080EACE248E722800530823 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6080EACD248E722800530823 /* OrderItem.swift */; };
@@ -73,6 +77,7 @@
 /* Begin PBXFileReference section */
 		2EF43E62ED5EE18E715419A6 /* Pods-MealToGoClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealToGoClient.release.xcconfig"; path = "Target Support Files/Pods-MealToGoClient/Pods-MealToGoClient.release.xcconfig"; sourceTree = "<group>"; };
 		4B633865365209DBD5962B85 /* Pods_MealToGoClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealToGoClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		600B576424AF4E850094C669 /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
 		601E3A0C24869C96001DCAD2 /* DateStringConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateStringConverter.swift; sourceTree = "<group>"; };
 		6032BECE2496029B0096757B /* SocialSignInClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialSignInClient.swift; sourceTree = "<group>"; };
 		6032BED1249610010096757B /* SignInButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButtons.swift; sourceTree = "<group>"; };
@@ -81,6 +86,7 @@
 		6046F61124A814A2002958CE /* JsonOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonOrder.swift; sourceTree = "<group>"; };
 		6046F61324A81A86002958CE /* OrderConfiemationPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfiemationPageViewModel.swift; sourceTree = "<group>"; };
 		6046F95524892D0C00E5D68B /* DishItemControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishItemControl.swift; sourceTree = "<group>"; };
+		6049B08224DF8E4B000B34EB /* StripeClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeClient.swift; sourceTree = "<group>"; };
 		604A1784248FDB510076900C /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		604CB3712493B79C00B6D7A5 /* OrderConfirmationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationPage.swift; sourceTree = "<group>"; };
 		604CB3732493BC9B00B6D7A5 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
@@ -111,6 +117,8 @@
 		6053543B24910D23008D7917 /* CartPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartPage.swift; sourceTree = "<group>"; };
 		6053543D24911464008D7917 /* RestaurantMapPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantMapPage.swift; sourceTree = "<group>"; };
 		6053543F24911505008D7917 /* RestaurantMapControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantMapControl.swift; sourceTree = "<group>"; };
+		6053F79D24F3EDA500FEB3B6 /* StripePaymentControlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripePaymentControlViewModel.swift; sourceTree = "<group>"; };
+		6053F79F24F7F45900FEB3B6 /* JsonPaymentIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPaymentIntent.swift; sourceTree = "<group>"; };
 		6068280F2491193200B66848 /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
 		6080EACA248E679F00530823 /* OrderItemOptionsControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemOptionsControl.swift; sourceTree = "<group>"; };
 		6080EACD248E722800530823 /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
@@ -174,6 +182,7 @@
 				6081F546249FAF80008F651D /* HttpClient.swift */,
 				6081F54824A39950008F651D /* MtGClient.swift */,
 				60EC64F324A6207600F519F6 /* AlertUtil.swift */,
+				6049B08224DF8E4B000B34EB /* StripeClient.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -192,6 +201,8 @@
 			isa = PBXGroup;
 			children = (
 				6046F61124A814A2002958CE /* JsonOrder.swift */,
+				600B576424AF4E850094C669 /* TokenResponse.swift */,
+				6053F79F24F7F45900FEB3B6 /* JsonPaymentIntent.swift */,
 			);
 			path = JsonModels;
 			sourceTree = "<group>";
@@ -291,6 +302,7 @@
 				60EC64F524A768C300F519F6 /* DishListPageViewModel.swift */,
 				60EC64F724A7715800F519F6 /* RestaurantListPageViewModel.swift */,
 				6046F61324A81A86002958CE /* OrderConfiemationPageViewModel.swift */,
+				6053F79D24F3EDA500FEB3B6 /* StripePaymentControlViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -521,6 +533,7 @@
 				604CB3722493B79C00B6D7A5 /* OrderConfirmationPage.swift in Sources */,
 				60C6E6782483EC6D00878258 /* DemoData.swift in Sources */,
 				6050E82E2483DF8400AA4EF7 /* AppDelegate.swift in Sources */,
+				6053F79E24F3EDA500FEB3B6 /* StripePaymentControlViewModel.swift in Sources */,
 				604CB37C2494737400B6D7A5 /* PaymentMethod.swift in Sources */,
 				6053543C24910D23008D7917 /* CartPage.swift in Sources */,
 				6032BED2249610010096757B /* SignInButtons.swift in Sources */,
@@ -545,6 +558,7 @@
 				6053544024911505008D7917 /* RestaurantMapControl.swift in Sources */,
 				6051ABDC249A5EA400AA593E /* AppGlobalSettings.swift in Sources */,
 				6046F61224A814A2002958CE /* JsonOrder.swift in Sources */,
+				6049B08324DF8E4B000B34EB /* StripeClient.swift in Sources */,
 				6050E8302483DF8400AA4EF7 /* SceneDelegate.swift in Sources */,
 				60F5B250249910080078F326 /* AppGlobalVariables.swift in Sources */,
 				6053543A24910995008D7917 /* SettingsPage.swift in Sources */,
@@ -555,8 +569,10 @@
 				6053543824910295008D7917 /* MainViewModel.swift in Sources */,
 				60C6E67A2483F9F900878258 /* RestaurantListPage.swift in Sources */,
 				6046F95624892D0C00E5D68B /* DishItemControl.swift in Sources */,
+				600B576524AF4E850094C669 /* TokenResponse.swift in Sources */,
 				60EC64F624A768C300F519F6 /* DishListPageViewModel.swift in Sources */,
 				606828102491193200B66848 /* ProfilePage.swift in Sources */,
+				6053F7A024F7F45900FEB3B6 /* JsonPaymentIntent.swift in Sources */,
 				604CB3782493C5F000B6D7A5 /* MultiLineTextField.swift in Sources */,
 				6050E8322483DF8400AA4EF7 /* ContentView.swift in Sources */,
 				604A1785248FDB510076900C /* ColorExtensions.swift in Sources */,

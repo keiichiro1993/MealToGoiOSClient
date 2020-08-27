@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleSignIn
+import Stripe
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -17,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // Initialize sign-in
         GIDSignIn.sharedInstance().clientID = "1076073232378-0me0bu5ba51sr6u9p10t5pr55gmbam3e.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = self
-        
+        //Stripe initiallization
+        Stripe.setDefaultPublishableKey("pk_test_51H9AtvIqNmuvq9ZtsDXFRzm0zwNOszCdC1tf2wLgxif4qFOhX4qqB8vaK0t3dtJjER2cVGvo0cMeLFZh0LzyTUAY00Vwe7IKas")
         return true
     }
     

@@ -29,14 +29,22 @@ struct OrderConfirmationPage: View {
                     Text("商品数：")
                     Text(String(AppGlobalVariables.OrderCart.OrderItems.count))
                 }
+                HStack {
+                    Text("合計金額：")
+                    Text(String(viewModel.totalPrice))
+                }
                 VStack(alignment: .leading) {
                     Text("要望/店舗への連絡事項:")
                     MultilineTextField("Add comment here", text: $viewModel.OrderCart.OrderComment, onCommit: {})
                         .padding()
                 }
                 VStack(alignment: .leading) {
-                    Text("お支払い方法:")
-                    Picker(selection: $viewModel.OrderCart.SelectedPaymentMethod.Name, label: Text("お支払い方法:")) {
+                    Button(action: {
+                        self.viewModel.paymentContextDelegate.paymentContext?.presentPaymentOptionsViewController()
+                    }){
+                        Text("お支払い方法: 選択する ＞")//選んでたら表示を変えたい
+                    }
+                        /*Picker(selection: $viewModel.OrderCart.SelectedPaymentMethod.Name, label: Text("お支払い方法:")) {
                         ForEach(["クレジットカード", "PayPay", "LinePay"], id: \.self) { item in
                             Text(item)
                         }
@@ -52,11 +60,13 @@ struct OrderConfirmationPage: View {
                         TextField("0000",text: $viewModel.OrderCart.SelectedPaymentMethod.Fields[3])
                     }
                     .multilineTextAlignment(.center)
-                    .keyboardType(.numberPad)
+                    .keyboardType(.numberPad)*/
                 }
             }
             Spacer()
-            Button(action: {}) {Text("注文を確定する")
+            Button(action: {
+                self.viewModel.paymentContextDelegate.RequestPayment()
+            }) {Text("注文を確定する")
                 .font(.headline)
                 .foregroundColor(.white)
                 .frame(maxWidth:.infinity,maxHeight: 60)
