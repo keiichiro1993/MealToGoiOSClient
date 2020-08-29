@@ -42,13 +42,13 @@ class StripeClient: NSObject, STPCustomerEphemeralKeyProvider {
     
     func GetPaymentIntent(amount: Int) throws -> JsonPaymentIntent {
         let url = self.baseURL.appendingPathComponent("payment_intent")
-        let body = "{\"amount\":\(String(amount)), \"customerId\":\"cus_HrzpOm940m9mcc\"}"
+        let body = "{\"amount\":\(String(amount)), \"stripeCustomerId\":\"cus_HrzpOm940m9mcc\", \"stripeCustomAccountId\": \"acct_1HDtVrKlk0ZTaAFo\", \"mtgFeeAmount\": 100}"
         
         do {
             let client = HttpClient()
             client.DefaultHeaders["Content-Type"] = "application/json"
             let response = try client.PostAsync(url: url, body: body.data(using: .utf8)!)
-            NSLog("response: \(response.Body!)")
+            print("response: \(String.init(data: response.Body!, encoding: .utf8)!)")
             
             return try JSONDecoder().decode(JsonPaymentIntent.self, from: response.Body!)
         } catch let error as NSError {

@@ -9,7 +9,9 @@ import Foundation
 class JsonPaymentIntent: Codable {
     let id, object: String
     let amount, amountCapturable, amountReceived: Int
-    let application, applicationFeeAmount, canceledAt, cancellationReason: JSONNull?
+    let application: JSONNull?
+    let applicationFeeAmount: Int
+    let canceledAt, cancellationReason: JSONNull?
     let captureMethod: String
     let charges: Charges
     let clientSecret, confirmationMethod: String
@@ -24,7 +26,8 @@ class JsonPaymentIntent: Codable {
     let receiptEmail, review, setupFutureUsage, shipping: JSONNull?
     let source, statementDescriptor, statementDescriptorSuffix: JSONNull?
     let status: String
-    let transferData, transferGroup: JSONNull?
+    let transferData: TransferData
+    let transferGroup: JSONNull?
 
     enum CodingKeys: String, CodingKey {
         case id, object, amount
@@ -59,7 +62,7 @@ class JsonPaymentIntent: Codable {
         case transferGroup = "transfer_group"
     }
 
-    init(id: String, object: String, amount: Int, amountCapturable: Int, amountReceived: Int, application: JSONNull?, applicationFeeAmount: JSONNull?, canceledAt: JSONNull?, cancellationReason: JSONNull?, captureMethod: String, charges: Charges, clientSecret: String, confirmationMethod: String, created: Int, currency: String, customer: String, welcomeDescription: JSONNull?, invoice: JSONNull?, lastPaymentError: JSONNull?, livemode: Bool, metadata: Metadata, nextAction: JSONNull?, onBehalfOf: JSONNull?, paymentMethod: JSONNull?, paymentMethodOptions: PaymentMethodOptions, paymentMethodTypes: [String], receiptEmail: JSONNull?, review: JSONNull?, setupFutureUsage: JSONNull?, shipping: JSONNull?, source: JSONNull?, statementDescriptor: JSONNull?, statementDescriptorSuffix: JSONNull?, status: String, transferData: JSONNull?, transferGroup: JSONNull?) {
+    init(id: String, object: String, amount: Int, amountCapturable: Int, amountReceived: Int, application: JSONNull?, applicationFeeAmount: Int, canceledAt: JSONNull?, cancellationReason: JSONNull?, captureMethod: String, charges: Charges, clientSecret: String, confirmationMethod: String, created: Int, currency: String, customer: String, welcomeDescription: JSONNull?, invoice: JSONNull?, lastPaymentError: JSONNull?, livemode: Bool, metadata: Metadata, nextAction: JSONNull?, onBehalfOf: JSONNull?, paymentMethod: JSONNull?, paymentMethodOptions: PaymentMethodOptions, paymentMethodTypes: [String], receiptEmail: JSONNull?, review: JSONNull?, setupFutureUsage: JSONNull?, shipping: JSONNull?, source: JSONNull?, statementDescriptor: JSONNull?, statementDescriptorSuffix: JSONNull?, status: String, transferData: TransferData, transferGroup: JSONNull?) {
         self.id = id
         self.object = object
         self.amount = amount
@@ -153,6 +156,15 @@ class Card: Codable {
         self.installments = installments
         self.network = network
         self.requestThreeDSecure = requestThreeDSecure
+    }
+}
+
+// MARK: - TransferData
+class TransferData: Codable {
+    let destination: String
+
+    init(destination: String) {
+        self.destination = destination
     }
 }
 
